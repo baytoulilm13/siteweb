@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="9C5XbXg-ayzrhPZmTGplz2neh-k2hMfwOYHFubLnEo0">
+<title>Baytoul Ilm — Institut de Savoir de Chiconi</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Cinzel:wght@400;500;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --noir:#1a2a30;
+  --noir2:#1e3540;
+  --dore:#c8a45a;
+  --dore2:#e0c07a;
+  --dore3:#b8924a;
+  --blanc:#ffffff;
+  --bg:#ffffff;
+  --bg2:#ffffff;
+  --tx:#1a2a30;
+  --txm:#2c3e45;
+  --txl:#5a6e75;
+  --bd:rgba(42,122,138,.14);
+  --bdm:rgba(42,122,138,.28);
+  --radius:4px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  font-family:'Jost',sans-serif;
+  background:var(--bg);
+  color:var(--tx);
+  font-size:14px;
+  line-height:1.6;
+}
+
+/* ── HEADER ── */
+header{
+  background:#ffffff;
+  position:sticky;
+  top:0;
+  z-index:200;
+  border-bottom:2px solid var(--teal2);
+  box-shadow:0 2px 12px rgba(42,122,138,.1);
+}
+.hdr-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 40px;
+  max-width:1300px;
+  margin:0 auto;
+  height:70px;
+}
+.logo-wrap{display:flex;align-items:center;gap:16px}
+.logo-img{height:52px;width:auto;background-color:transparent}
+.logo-divider{width:1px;height:32px;background:rgba(42,122,138,.25);margin:0 4px}
+.logo-name{
+  font-family:'Cinzel',serif;
+  font-size:.82rem;
+  font-weight:400;
+  color:var(--teal2);
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  line-height:1.3;
+}
+.logo-sub{font-size:.58rem;color:#8aabb5;letter-spacing:.18em;text-transform:uppercase;margin-top:2px}
+
+/* NAV */
+nav{display:flex;gap:0;height:70px;align-items:center}
+nav a{
+  color:#5a6e75;
+  font-family:'Jost',sans-serif;
+  font-size:.72rem;
+  font-weight:500;
+  padding:0 20px;
+  height:70px;
+  display:flex;
+  align-items:center;
+  cursor:pointer;
+  transition:color .25s;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  border-bottom:2px solid transparent;
+  position:relative;
+}
+nav a::after{
+  content:'';
+  position:absolute;
+  bottom:-2px;
+  left:20px;
+  right:20px;
+  height:2px;
+  background:var(--dore);
+  transform:scaleX(0);
+  transition:transform .25s;
+}
+nav a:hover{color:var(--teal2)}
+nav a:hover::after{transform:scaleX(1)}
+nav a.active{color:var(--teal2);font-weight:600}
+nav a.active::after{transform:scaleX(1)}
+
+/* HAMBURGER */
+#hamburger{
+  display:none;
+  background:none;
+  border:none;
+  cursor:pointer;
+  padding:8px;
+  color:var(--teal2);
+  font-size:1.5rem;
+  line-height:1;
+}
+#mobile-menu{
+  display:none;
+  position:absolute;
+  top:100%;
+  right:0;
+  width:100%;
+  background:#ffffff;
+  border-top:1px solid var(--bdm);
+  flex-direction:column;
+  padding:8px 0;
+  z-index:100;
+  box-shadow:0 12px 40px rgba(42,122,138,.15);
+}
+#mobile-menu a{
+  color:#2c3e45;
+  font-size:.82rem;
+  font-weight:400;
+  padding:14px 28px;
+  cursor:pointer;
+  border-bottom:1px solid rgba(42,122,138,.08);
+  transition:color .2s,background .2s;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  display:flex;align-items:center;gap:12px;
+}
+#mobile-menu a:hover{color:var(--teal2);background:rgba(42,122,138,.06)}
+
+/* PAGES */
+.page{display:none}.page.active{display:block}
+
+/* WRAP */
+.wrap{max-width:1100px;margin:0 auto;padding:0 40px}
+.sec{padding:72px 0}
+.sec.alt{background:var(--bg2)}
+
+/* SECTION LABELS */
+.slbl{
+  font-family:'Cinzel',serif;
+  font-size:.6rem;
+  font-weight:500;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--dore3);
+  margin-bottom:14px;
+  display:flex;align-items:center;gap:16px;
+}
+.slbl::before{content:'';width:32px;height:1px;background:var(--dore3)}
+.stitle{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,4.5vw,3.2rem);
+  font-weight:600;
+  line-height:1.05;
+  color:var(--noir2);
+  margin-bottom:20px;
+  letter-spacing:-.01em;
+}
+.stitle em{font-style:italic;color:var(--dore3)}
+.sdesc{font-size:.95rem;color:var(--txm);line-height:1.9;max-width:700px;font-weight:300}
+
+/* ── HERO ── */
+.hero{
+  background:var(--noir);
+  padding:100px 40px 90px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero-bg-pattern{
+  position:absolute;inset:0;
+  background-image:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(200,164,90,.12) 0%, transparent 70%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 48px,
+      rgba(200,164,90,.025) 48px,
+      rgba(200,164,90,.025) 49px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 48px,
+      rgba(200,164,90,.025) 48px,
+      rgba(200,164,90,.025) 49px
+    );
+  pointer-events:none;
+}
+.hero-ar-bg{
+  position:absolute;
+  font-size:28vw;
+  font-weight:300;
+  color:rgba(200,164,90,.025);
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  white-space:nowrap;
+  font-family:'Cormorant Garamond',serif;
+  letter-spacing:.1em;
+  line-height:1;
+}
+.h-eyebrow{
+  font-family:'Cinzel',serif;
+  font-size:.6rem;
+  letter-spacing:.35em;
+  text-transform:uppercase;
+  color:var(--dore3);
+  margin-bottom:20px;
+  opacity:0;
+  animation:fadeUp .8s .1s forwards;
+}
+.h-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3.5rem,9vw,7rem);
+  font-weight:300;
+  color:#fff;
+  line-height:.88;
+  margin-bottom:16px;
+  letter-spacing:-.02em;
+  opacity:0;
+  animation:fadeUp .9s .2s forwards;
+}
+.h-title em{
+  font-style:italic;
+  background:none;
+  -webkit-background-clip:unset;
+  -webkit-text-fill-color:#ffffff;
+  background-clip:unset;
+  display:block;
+  color:#ffffff;
+}
+.h-ar{
+  font-size:clamp(1.8rem,4vw,3rem);
+  color:rgba(200,164,90,.6);
+  font-weight:300;
+  margin-bottom:6px;
+  letter-spacing:.1em;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  opacity:0;
+  animation:fadeUp .9s .35s forwards;
+}
+.h-tagline{
+  font-size:.75rem;
+  color:rgba(244,240,232,.35);
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  margin-bottom:36px;
+  opacity:0;
+  animation:fadeUp .9s .45s forwards;
+}
+.h-sub{
+  font-size:.95rem;
+  color:rgba(244,240,232,.5);
+  max-width:640px;
+  margin:0 auto 44px;
+  line-height:1.9;
+  font-weight:300;
+  opacity:0;
+  animation:fadeUp .9s .55s forwards;
+}
+.h-cta{
+  display:flex;gap:16px;justify-content:center;flex-wrap:wrap;
+  opacity:0;animation:fadeUp .9s .65s forwards;
+}
+.hero-ornament{
+  display:flex;align-items:center;justify-content:center;gap:20px;
+  margin-bottom:32px;
+  opacity:0;animation:fadeUp .9s .15s forwards;
+}
+.ornament-line{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--dore3))}
+.ornament-line.right{background:linear-gradient(90deg,var(--dore3),transparent)}
+.ornament-diamond{
+  width:6px;height:6px;
+  background:var(--dore);
+  transform:rotate(45deg);
+}
+
+/* BUTTONS */
+.btn{
+  padding:13px 32px;
+  border-radius:var(--radius);
+  font-size:.72rem;
+  font-weight:500;
+  font-family:'Jost',sans-serif;
+  cursor:pointer;
+  border:none;
+  transition:all .25s;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.btn-dore{
+  background:linear-gradient(135deg,var(--dore3),var(--dore),var(--dore2));
+  background-size:200% 200%;
+  background-position:0% 0%;
+  color:var(--noir);
+  box-shadow:0 4px 20px rgba(200,164,90,.3);
+}
+.btn-dore:hover{
+  background-position:100% 100%;
+  transform:translateY(-2px);
+  box-shadow:0 8px 28px rgba(200,164,90,.4);
+}
+.btn-out{
+  background:transparent;
+  color:rgba(244,240,232,.7);
+  border:1px solid rgba(200,164,90,.4);
+}
+.btn-out:hover{
+  color:var(--dore2);
+  border-color:var(--dore);
+  background:rgba(200,164,90,.06);
+}
+
+/* KEYFRAMES */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ── FEATURE CARDS ── */
+.pillars{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--bdm);
+  border:1px solid var(--bdm);
+  border-radius:4px;
+  overflow:hidden;
+  margin-top:56px;
+}
+.pillar{
+  background:var(--bg);
+  padding:40px 32px;
+  transition:background .25s;
+}
+.pillar:hover{background:var(--bg2)}
+.pillar-icon{
+  font-size:1.5rem;
+  margin-bottom:18px;
+  display:block;
+}
+.pillar-num{
+  font-family:'Cinzel',serif;
+  font-size:.55rem;
+  letter-spacing:.3em;
+  color:var(--dore3);
+  margin-bottom:10px;
+}
+.pillar h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;
+  font-weight:600;
+  color:var(--noir2);
+  margin-bottom:12px;
+  line-height:1.2;
+}
+.pillar p{
+  font-size:.82rem;
+  color:var(--txl);
+  line-height:1.85;
+  font-weight:300;
+}
+
+/* ── CTA BAND ── */
+.cta-band{
+  background:var(--noir);
+  padding:80px 40px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  border-top:1px solid var(--bdm);
+  border-bottom:1px solid var(--bdm);
+}
+.cta-band::before{
+  content:'';
+  position:absolute;
+  top:0;left:50%;
+  transform:translateX(-50%);
+  width:600px;height:2px;
+  background:linear-gradient(90deg,transparent,var(--dore),transparent);
+}
+.cta-band .stitle{color:#fff}
+.cta-band .stitle em{color:var(--dore2)}
+.cta-band .sdesc{color:rgba(244,240,232,.45);margin:0 auto 36px}
+
+/* ── PROGRAMME ── */
+.prog-wrap{padding:60px 0}
+.accordion{
+  margin-bottom:16px;
+  border:1px solid var(--bdm);
+  border-radius:4px;
+  overflow:hidden;
+}
+.acc-head{
+  background:var(--bg2);
+  padding:22px 32px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  transition:background .2s;
+  user-select:none;
+}
+.acc-head:hover{background:var(--bd)}
+.acc-head h3{
+  font-family:'Cinzel',serif;
+  font-size:.82rem;
+  font-weight:500;
+  color:var(--noir2);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.acc-icon{
+  color:var(--dore3);
+  font-size:1.2rem;
+  transition:transform .3s;
+  line-height:1;
+}
+.acc-body{
+  display:none;
+  background:#ffffff;
+  border-top:1px solid var(--bd);
+  padding:32px;
+}
+.acc-body.open{display:block}
+.acc-icon.open{transform:rotate(180deg)}
+
+/* NIVEAU CARDS */
+.niveau{
+  padding:28px 32px;
+  border-left:3px solid var(--dore3);
+  background:var(--bg2);
+  margin-bottom:16px;
+  border-radius:0 4px 4px 0;
+  transition:border-color .2s;
+}
+.niveau:last-child{margin-bottom:0}
+.niveau:hover{border-color:var(--dore)}
+.niveau-tag{
+  font-family:'Cinzel',serif;
+  font-size:.55rem;
+  letter-spacing:.25em;
+  color:var(--dore3);
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+.niveau h4{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem;
+  font-weight:600;
+  color:var(--noir2);
+  margin-bottom:8px;
+}
+.niveau-meta{
+  font-size:.75rem;
+  color:var(--dore3);
+  font-weight:500;
+  margin-bottom:12px;
+  letter-spacing:.05em;
+}
+.niveau p{
+  font-size:.88rem;
+  color:var(--txm);
+  line-height:1.85;
+  font-weight:300;
+}
+.niveau ul{
+  list-style:none;
+  padding:0;margin-top:12px;
+}
+.niveau ul li{
+  font-size:.85rem;
+  color:var(--txm);
+  padding:4px 0 4px 20px;
+  position:relative;
+  font-weight:300;
+  line-height:1.7;
+}
+.niveau ul li::before{
+  content:'—';
+  position:absolute;
+  left:0;
+  color:var(--dore3);
+}
+
+/* ── FORMS (inscriptions / contact) ── */
+.form-shell{
+  background:#fff;
+  border:1px solid var(--bdm);
+  border-radius:4px;
+  overflow:hidden;
+  margin-top:36px;
+  box-shadow:0 4px 24px rgba(0,0,0,.06);
+}
+.form-head{
+  background:var(--noir);
+  padding:24px 32px;
+  display:flex;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.form-head-icon{
+  width:44px;height:44px;
+  background:rgba(200,164,90,.15);
+  border-radius:3px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;
+  flex-shrink:0;
+}
+.form-head-text h3{
+  color:#fff;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;
+  font-weight:600;
+  margin-bottom:4px;
+}
+.form-head-text p{
+  font-size:.75rem;
+  color:rgba(244,240,232,.45);
+}
+.form-badge{
+  margin-left:auto;
+  background:rgba(200,164,90,.18);
+  border:1px solid rgba(200,164,90,.35);
+  color:var(--dore2);
+  padding:5px 14px;
+  border-radius:2px;
+  font-size:.65rem;
+  font-weight:500;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+iframe.form-iframe{
+  width:100%;
+  min-width:100%;
+  display:block;
+  border:none;
+}
+
+/* ── DONS ── */
+.don-card{
+  background:#fff;
+  border:1px solid var(--bdm);
+  border-radius:4px;
+  padding:40px;
+  margin-top:36px;
+  max-width:600px;
+  box-shadow:0 4px 24px rgba(0,0,0,.06);
+}
+.don-row{
+  display:flex;
+  align-items:flex-start;
+  gap:16px;
+  padding:18px 0;
+  border-bottom:1px solid var(--bd);
+}
+.don-row:last-child{border-bottom:none}
+.don-label{
+  font-family:'Cinzel',serif;
+  font-size:.6rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--dore3);
+  font-weight:500;
+  min-width:110px;
+  padding-top:2px;
+}
+.don-val{
+  font-family:'Jost',monospace;
+  font-size:.95rem;
+  font-weight:500;
+  color:var(--noir2);
+  letter-spacing:.04em;
+  word-break:break-all;
+}
+
+/* ── FOOTER ── */
+footer{
+  background:#1e3540;
+  padding:48px 40px 32px;
+  border-top:3px solid var(--teal2);
+}
+.footer-inner{
+  max-width:1100px;
+  margin:0 auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  flex-wrap:wrap;
+  gap:32px;
+  padding-bottom:28px;
+  border-bottom:1px solid rgba(244,240,232,.08);
+  margin-bottom:24px;
+}
+.footer-brand{}
+.footer-brand-name{
+  font-family:'Cinzel',serif;
+  font-size:.95rem;
+  color:var(--dore2);
+  letter-spacing:.2em;
+  margin-bottom:4px;
+}
+.footer-brand-ar{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem;
+  font-style:italic;
+  color:rgba(200,164,90,.4);
+  margin-bottom:16px;
+}
+.footer-contact a{
+  display:block;
+  color:rgba(244,240,232,.4);
+  font-size:.72rem;
+  text-decoration:none;
+  margin-bottom:6px;
+  transition:color .2s;
+  letter-spacing:.04em;
+}
+.footer-contact a:hover{color:var(--dore2)}
+.footer-links{
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  gap:6px 20px;
+  align-items:center;
+}
+.footer-links a{
+  font-size:.68rem;
+  color:rgba(244,240,232,.3);
+  cursor:pointer;
+  text-decoration:none;
+  transition:color .2s;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.footer-links a:hover{color:var(--dore2)}
+.footer-bot{
+  max-width:1100px;
+  margin:0 auto;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.footer-bot p{
+  font-size:.6rem;
+  color:rgba(244,240,232,.18);
+  letter-spacing:.06em;
+}
+
+/* MODAL */
+.mov{
+  display:none;
+  position:fixed;inset:0;
+  z-index:500;
+  background:rgba(8,8,8,.75);
+  backdrop-filter:blur(6px);
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+.mov.open{display:flex}
+.mbox{
+  background:#fff;
+  border-radius:4px;
+  max-width:680px;
+  width:100%;
+  max-height:88vh;
+  display:flex;
+  flex-direction:column;
+  box-shadow:0 32px 80px rgba(8,8,8,.5);
+  border:1px solid var(--bdm);
+}
+.mhdr{
+  padding:18px 24px;
+  border-bottom:1px solid var(--bd);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-shrink:0;
+  background:var(--noir);
+  border-radius:4px 4px 0 0;
+}
+.mhdr h3{
+  font-family:'Cinzel',serif;
+  font-size:.8rem;
+  font-weight:500;
+  color:var(--dore2);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.mcls{
+  background:none;
+  border:none;
+  color:rgba(244,240,232,.4);
+  cursor:pointer;
+  font-size:1.2rem;
+  transition:color .2s;
+  line-height:1;
+  padding:4px 8px;
+}
+.mcls:hover{color:var(--dore2)}
+.mbody{padding:28px;overflow-y:auto;flex:1}
+.mbody h4{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:var(--noir2);margin:20px 0 6px}
+.mbody h4:first-child{margin-top:0}
+.mbody p,.mbody li{font-size:.82rem;color:var(--txm);line-height:1.85;margin-bottom:6px;font-weight:300}
+.mbody ul{padding-left:18px;margin-bottom:12px}
+.mbody .intro{font-size:.88rem;color:var(--tx);font-weight:400;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--bd)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .pillars{grid-template-columns:1fr}
+  .hdr-inner{padding:0 20px}
+  .wrap{padding:0 20px}
+  footer{padding:40px 20px 24px}
+  .footer-links{align-items:flex-start}
+}
+@media(max-width:640px){
+  nav{display:none}
+  #hamburger{display:block}
+  header{position:relative}/* allow dropdown overlay */
+  .hero{padding:70px 20px 60px}
+  .h-title{font-size:clamp(2.8rem,12vw,5rem)}
+  .don-row{flex-direction:column;gap:6px}
+  .form-head{flex-direction:column;align-items:flex-start}
+  .form-badge{margin-left:0}
+}
+/* ── COULEURS TEAL (image 2) ── */
+:root{
+  --teal:#2a8a9a;
+  --teal2:#1e6878;
+  --teal3:#d0eef3;
+  --teal4:#eaf6f9;
+}
+/* Accents */
+.slbl{color:var(--teal2)}
+.slbl::before{background:var(--teal2)}
+.stitle em{color:var(--teal2)}
+/* Nav */
+nav a::after{background:var(--teal2)}
+/* Boutons */
+.btn-dore{background:linear-gradient(135deg,var(--teal2),var(--teal));color:#fff;box-shadow:0 4px 20px rgba(42,138,154,.25)}
+.btn-dore:hover{box-shadow:0 8px 28px rgba(42,138,154,.38);transform:translateY(-2px)}
+.btn-out{border-color:rgba(42,138,154,.45);color:var(--teal2)}
+.btn-out:hover{color:var(--teal2);border-color:var(--teal);background:rgba(42,138,154,.07)}
+/* Hero - reste sombre */
+.hero-bg-pattern{background-image:radial-gradient(ellipse 60% 50% at 50% 0%, rgba(42,138,154,.18) 0%, transparent 70%),repeating-linear-gradient(0deg,transparent,transparent 48px,rgba(42,138,154,.04) 48px,rgba(42,138,154,.04) 49px),repeating-linear-gradient(90deg,transparent,transparent 48px,rgba(42,138,154,.04) 48px,rgba(42,138,154,.04) 49px)}
+.hero-ar-bg{color:rgba(42,138,154,.05)}
+.h-eyebrow{color:#7ecfdc}
+.ornament-line{background:linear-gradient(90deg,transparent,var(--teal))}
+.ornament-line.right{background:linear-gradient(90deg,var(--teal),transparent)}
+.ornament-diamond{background:var(--teal)}
+.h-title em{background:none;-webkit-text-fill-color:#ffffff;color:#ffffff;font-style:italic}
+.h-ar{color:rgba(126,207,220,.6)}
+/* Sections claires */
+.sec.alt{background:#ffffff}
+.pillar{background:#ffffff}
+.pillar:hover{background:#f0f8fa}
+.pillar-num{color:var(--teal2)}
+.niveau-tag{color:var(--teal2)}
+.niveau{border-color:var(--teal2);background:#ffffff}
+.niveau:hover{border-color:var(--teal)}
+.niveau-meta{color:var(--teal2)}
+.niveau ul li::before{color:var(--teal2)}
+.acc-head{background:#ffffff}
+.acc-head:hover{background:#f0f8fa}
+.acc-body{background:#ffffff}
+.acc-icon{color:var(--teal2)}
+.cta-band{background:#1e3540;border-top:1px solid var(--bdm);border-bottom:1px solid var(--bdm)}
+.cta-band::before{background:linear-gradient(90deg,transparent,var(--teal),transparent)}
+.cta-band .stitle{color:#ffffff}
+.cta-band .stitle em{color:#7ecfdc}
+.cta-band .sdesc{color:rgba(255,255,255,.6);margin:0 auto 36px}
+.don-label{color:var(--teal2)}
+.don-card{background:#fff}
+/* Footer */
+.footer-brand-name{color:#7ecfdc}
+.footer-brand-ar{color:rgba(126,207,220,.5)}
+.footer-contact a:hover{color:#7ecfdc}
+.footer-links a:hover{color:#7ecfdc}
+.form-badge{background:rgba(42,138,154,.15);border-color:rgba(42,138,154,.3);color:var(--teal2)}
+.form-head{background:var(--teal2)}
+.mhdr{background:var(--teal2)}
+.mhdr h3{color:#ffffff}
+.mcls{color:rgba(255,255,255,.6)}
+.mcls:hover{color:#ffffff}
+/* Pillars border */
+.pillars{background:rgba(42,138,154,.12)}
+
+
+/* ── SCHÉMA PARCOURS ── */
+.parcours-schema{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:24px 16px 8px;
+  gap:0;
+}
+.schema-node{display:flex;justify-content:center;width:100%}
+.schema-arrow{
+  color:var(--teal2);
+  font-size:1.2rem;
+  text-align:center;
+  padding:6px 0;
+  line-height:1;
+}
+.schema-card{
+  border-radius:6px;
+  padding:16px 24px;
+  text-align:center;
+  min-width:220px;
+  max-width:320px;
+  width:100%;
+}
+.schema-card--teal{
+  background:var(--teal2);
+  color:#fff;
+  box-shadow:0 3px 12px rgba(42,122,138,.25);
+}
+.schema-card--teal .schema-step{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.2em;opacity:.7;margin-bottom:4px;text-transform:uppercase}
+.schema-card--teal .schema-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;line-height:1.2}
+.schema-card--teal .schema-sub{font-size:.75rem;opacity:.8;margin-top:4px;font-weight:300}
+.schema-card--teal .schema-duration{font-size:.7rem;opacity:.65;margin-top:6px;letter-spacing:.1em;font-style:italic}
+.schema-card--eval{background:var(--teal)}
+.schema-card--parcours{background:var(--teal2);min-width:180px}
+.schema-card--parcours .schema-parcours-label{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700}
+.schema-card--parcours .schema-parcours-desc{font-size:.72rem;opacity:.8;margin-top:4px;font-weight:300}
+.schema-card--light{
+  background:#ffffff;
+  border:2px solid var(--teal2);
+  color:var(--teal2);
+}
+.schema-card--light .schema-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600}
+.schema-card--light .schema-sub{font-size:.75rem;opacity:.8;margin-top:4px}
+.schema-card--cert{
+  background:linear-gradient(135deg,var(--teal2),var(--teal));
+  color:#fff;
+  box-shadow:0 4px 16px rgba(42,122,138,.4);
+  border:2px solid rgba(255,255,255,.2);
+}
+.schema-card--cert .schema-step{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.2em;opacity:.7;margin-bottom:4px;text-transform:uppercase}
+.schema-card--cert .schema-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700}
+.schema-card--cert .schema-sub{font-size:.78rem;opacity:.85;margin-top:6px;font-weight:300}
+
+/* FORK */
+.schema-fork{width:100%;display:flex;flex-direction:column;align-items:center}
+.schema-fork-line{
+  width:2px;height:24px;
+  background:var(--teal2);
+}
+.schema-fork-branches{
+  display:flex;
+  gap:40px;
+  justify-content:center;
+  width:100%;
+  position:relative;
+}
+.schema-fork-branches::before{
+  content:'';
+  position:absolute;
+  top:0;left:50%;
+  width:calc(50% - 90px);
+  height:2px;
+  background:var(--teal2);
+  transform:translateX(-100%);
+}
+.schema-fork-branches::after{
+  content:'';
+  position:absolute;
+  top:0;left:50%;
+  width:calc(50% - 90px);
+  height:2px;
+  background:var(--teal2);
+}
+.schema-branch{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0;
+  flex:1;
+  max-width:240px;
+}
+
+/* CERTIFICATION */
+.schema-certification{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  margin-top:8px;
+}
+.schema-cert-line{
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  gap:0;
+  width:100%;
+  position:relative;
+  height:32px;
+}
+.schema-cert-line::before{
+  content:'';
+  position:absolute;
+  bottom:0;
+  left:25%;
+  right:25%;
+  height:2px;
+  background:var(--teal2);
+}
+.schema-cert-line::after{
+  content:'';
+  position:absolute;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:2px;
+  height:32px;
+  background:var(--teal2);
+}
+
+@media(max-width:640px){
+  .schema-fork-branches{gap:16px}
+  .schema-branch{max-width:160px}
+  .schema-card{min-width:140px;padding:12px 14px}
+}
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="hdr-inner">
+    <div class="logo-wrap">
+      <img src="https://i.postimg.cc/Kvp2nqP3/Capture-d-ecran-2026-05-08-150124.png" alt="Baytoul Ilm" class="logo-img">
+      <div class="logo-divider"></div>
+      <div>
+        <div class="logo-name">Baytoul Ilm</div>
+        <div class="logo-sub">Institut de Savoir · Chiconi</div>
+      </div>
+    </div>
+    <nav id="main-nav">
+      <a onclick="goPage('home')" class="active" id="tab-home">Accueil</a>
+      <a onclick="goPage('programme')" id="tab-programme">Programme</a>
+      <a onclick="goPage('inscription')" id="tab-inscription">Inscription</a>
+      <a onclick="goPage('dons')" id="tab-dons">Dons</a>
+      <a onclick="goPage('reglement')" id="tab-reglement">Règlement</a>
+      <a onclick="goPage('contact')" id="tab-contact">Contact</a>
+    </nav>
+    <button id="hamburger" onclick="toggleMenu()" aria-label="Menu">☰</button>
+  </div>
+  <div id="mobile-menu">
+    <a onclick="goPageM('home')"><span>🏠</span> Accueil</a>
+    <a onclick="goPageM('programme')"><span>📖</span> Programme</a>
+    <a onclick="goPageM('inscription')"><span>✏️</span> Inscription</a>
+    <a onclick="goPageM('dons')"><span>💝</span> Dons</a>
+    <a onclick="goPageM('reglement')"><span>📋</span> Règlement</a>
+    <a onclick="goPageM('contact')"><span>✉️</span> Contact</a>
+  </div>
+</header>
+
+<!-- ══════════════════════ PAGE ACCUEIL ══════════════════════ -->
+<div id="page-home" class="page active">
+
+  <div class="hero">
+    <div class="hero-bg-pattern"></div>
+    <div class="hero-ar-bg">بيت العلم</div>
+
+    <div class="h-eyebrow">Chiconi · Mayotte · Institut de Savoir</div>
+
+    <div class="hero-ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line right"></div>
+    </div>
+
+    <h1 class="h-title">
+      Baytoul Ilm
+      <em>بيت العلم</em>
+    </h1>
+
+    <div class="h-tagline">La Maison du Savoir</div>
+
+    <p class="h-sub">Transmettre un savoir authentique, élever les esprits et former une communauté éclairée, ancrée dans les valeurs de l'Islam et tournée vers l'excellence.</p>
+
+    <div class="h-cta">
+      <button class="btn btn-dore" onclick="goPage('inscription')">S'inscrire 2026/2027</button>
+      <button class="btn btn-out" onclick="goPage('programme')">Découvrir le programme</button>
+    </div>
+  </div>
+
+  <!-- PILLARS -->
+  <div class="wrap">
+    <div class="sec">
+      <div class="slbl">Notre mission</div>
+      <h2 class="stitle">Former la <em>jeunesse</em> de Mayotte</h2>
+      <p class="sdesc">Baytoul Ilm est un institut de savoir fondé à Chiconi, dédié à l'éducation islamique des jeunes de 6 à 18 ans. Nous proposons un accompagnement complet dans l'apprentissage du Coran et des sciences religieuses, pour former des jeunes équilibrés, citoyens responsables, ancrés dans les valeurs de l'Islam.</p>
+
+      <div class="pillars">
+        <div class="pillar">
+          <span class="pillar-icon">📖</span>
+          <div class="pillar-num">01 — Savoir</div>
+          <h3>Enseignement Coranique</h3>
+          <p>Lecture, Tajwid, Hifz — une progression méthodique de l'initiation à la mémorisation complète du Saint Coran.</p>
+        </div>
+        <div class="pillar">
+          <span class="pillar-icon">🕌</span>
+          <div class="pillar-num">02 — Fondements</div>
+          <h3>Sciences Religieuses</h3>
+          <p>Aqidah, Fiqh, Hadith — des bases solides pour comprendre et pratiquer l'Islam avec rigueur et sérénité.</p>
+        </div>
+        <div class="pillar">
+          <span class="pillar-icon">🌟</span>
+          <div class="pillar-num">03 — Excellence</div>
+          <h3>Éducation Intégrale</h3>
+          <p>Former des jeunes équilibrés, citoyens responsables, capables de contribuer positivement à leur communauté.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <div class="slbl" style="justify-content:center;color:var(--dore3)">Rejoignez-nous</div>
+    <h2 class="stitle" style="color:#fff;margin-bottom:16px">Inscrivez votre enfant à <em>Baytoul Ilm</em></h2>
+    <p class="sdesc" style="margin:0 auto 36px">Année scolaire 2026/2027</p>
+    <button class="btn btn-dore" onclick="goPage('inscription')">S'inscrire maintenant</button>
+  </div>
+</div>
+
+<!-- ══════════════════════ PAGE PROGRAMME ══════════════════════ -->
+<div id="page-programme" class="page">
+  <div class="wrap prog-wrap">
+    <div class="slbl">Curriculum</div>
+    <h2 class="stitle">Programme <em>2026 / 2027</em></h2>
+    <p class="sdesc" style="margin-bottom:48px">Quatre étapes progressives pour chaque enfant de 6 à 18 ans, réparties en deux départements complémentaires.</p>
+
+    <!-- DÉPARTEMENT CORAN -->
+    <div class="accordion">
+      <div class="acc-head" onclick="toggleAcc('coran')">
+        <h3>📖 &nbsp; Département du Coran</h3>
+        <span class="acc-icon" id="icon-coran">▾</span>
+      </div>
+      <div class="acc-body" id="body-coran">
+
+        <!-- SCHÉMA VISUEL -->
+        <div class="parcours-schema">
+
+          <!-- INITIATION -->
+          <div class="schema-node">
+            <div class="schema-card schema-card--teal">
+              <div class="schema-step">Étape 1</div>
+              <div class="schema-title">Initiation</div>
+              <div class="schema-sub">Bases solides et essentielles</div>
+              <div class="schema-duration">2 ans</div>
+            </div>
+          </div>
+
+          <div class="schema-arrow">▼</div>
+
+          <!-- APPROFONDISSEMENT -->
+          <div class="schema-node">
+            <div class="schema-card schema-card--teal">
+              <div class="schema-step">Étape 2</div>
+              <div class="schema-title">Approfondissement</div>
+              <div class="schema-sub">Compréhension et maîtrise</div>
+              <div class="schema-duration">3 ans</div>
+            </div>
+          </div>
+
+          <div class="schema-arrow">▼</div>
+
+          <!-- BIFURCATION -->
+          <div class="schema-fork">
+            <div class="schema-fork-line"></div>
+            <div class="schema-fork-branches">
+
+              <!-- BRANCHE HIFDH -->
+              <div class="schema-branch">
+                <div class="schema-arrow">▼</div>
+                <div class="schema-card schema-card--teal schema-card--parcours">
+                  <div class="schema-parcours-label">Parcours Hifdh</div>
+                  <div class="schema-parcours-desc">Voie de la mémorisation du Coran</div>
+                </div>
+                <div class="schema-arrow">▼</div>
+                <div class="schema-card schema-card--light">
+                  <div class="schema-title">Prépa Hifdh</div>
+                </div>
+                <div class="schema-arrow">▼</div>
+                <div class="schema-card schema-card--teal">
+                  <div class="schema-title">Classe Hifdh</div>
+                  <div class="schema-sub">Mémorisation du Coran</div>
+                </div>
+              </div>
+
+              <!-- BRANCHE ITQÂN -->
+              <div class="schema-branch">
+                <div class="schema-arrow">▼</div>
+                <div class="schema-card schema-card--teal schema-card--parcours">
+                  <div class="schema-parcours-label">Parcours Itqân</div>
+                  <div class="schema-parcours-desc">Voie de la maîtrise et de l'excellence</div>
+                </div>
+                <div class="schema-arrow">▼</div>
+                <div class="schema-card schema-card--light">
+                  <div class="schema-title">Perfectionnement</div>
+                  <div class="schema-sub">Perfectionnement et tajwid</div>
+                </div>
+                <div class="schema-arrow">▼</div>
+                <div class="schema-card schema-card--teal">
+                  <div class="schema-title">Maîtrise avancée</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DÉPARTEMENT SCIENCES RELIGIEUSES -->
+    <div class="accordion">
+      <div class="acc-head" onclick="toggleAcc('science')">
+        <h3>🕌 &nbsp; Département de Science Religieuse</h3>
+        <span class="acc-icon" id="icon-science">▾</span>
+      </div>
+      <div class="acc-body" id="body-science">
+        
+        <!-- TITRE INTÉRIEUR -->
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--noir2);text-align:center;margin:0 0 60px 0">Cursus et Matières par Niveau</h3>
+        
+        <!-- SCHÉMA SPIRALE ASCENDANTE UNIQUE -->
+        <div style="padding:80px 40px;background:radial-gradient(circle at center,rgba(42,138,154,.03),rgba(30,104,120,.02));border-radius:16px;position:relative;overflow:hidden">
+          
+          <!-- Spirale SVG de fond -->
+          <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:.15" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="spiralGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:var(--teal2)" />
+                <stop offset="100%" style="stop-color:var(--teal)" />
+              </linearGradient>
+            </defs>
+            <path d="M500,100 Q600,150 650,250 Q680,350 650,450 Q600,500 500,520 Q400,540 350,480 Q300,400 320,300 Q350,200 450,150" stroke="url(#spiralGrad)" stroke-width="20" fill="none" stroke-linecap="round"/>
+          </svg>
+
+          <!-- CONTENU CENTRAL -->
+          <div style="max-width:900px;margin:0 auto;position:relative;z-index:2">
+            
+            <!-- Titre central -->
+            <div style="text-align:center;margin-bottom:80px">
+              <h3 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--noir2);margin:0 0 12px 0">Progression Initiatique</h3>
+              <div style="width:60px;height:3px;background:linear-gradient(90deg,var(--teal2),var(--teal));margin:0 auto 16px"></div>
+              <p style="font-size:.9rem;color:var(--txm);font-style:italic">Une montée progressive vers l'excellence islamique</p>
+            </div>
+
+            <!-- GRILLE SPIRALE -->
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:60px 80px;position:relative">
+
+              <!-- COLONNE GAUCHE (Années 1, 3, 5) -->
+              <div style="display:flex;flex-direction:column;gap:60px">
+
+                <!-- NIVEAU 1 -->
+                <div style="position:relative;padding-left:40px;opacity:0;animation:slideInLeft 0.8s ease forwards" style="animation-delay:0s">
+                  <style>@keyframes slideInLeft{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}</style>
+                  <div style="position:absolute;left:-30px;top:0;width:60px;height:60px;background:linear-gradient(135deg,var(--teal2),var(--teal2));border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;box-shadow:0 6px 20px rgba(30,104,120,.3);border:3px solid #fff">1</div>
+                  <div style="background:#fff;border-left:4px solid var(--teal2);border-radius:8px;padding:24px;box-shadow:0 4px 16px rgba(30,104,120,.1)">
+                    <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--teal2);margin:0 0 4px 0">Année 1</h4>
+                    <p style="font-size:.7rem;color:var(--teal2);text-transform:uppercase;letter-spacing:.1em;font-weight:600;margin:0 0 16px 0">🌱 Germination</p>
+                    <div style="font-size:.85rem;color:var(--txm);line-height:1.9">
+                      <p style="margin:0 0 10px 0"><strong style="color:var(--noir2)">🔤 Arabe (Initiation)</strong><br/>Écriture, vocabulaire, conjugaison & formes verbales</p>
+                      <p style="margin:0 0 10px 0"><strong style="color:var(--noir2)">📚 Fiqh - Tome 1</strong></p>
+                      <p style="margin:0"><strong style="color:var(--noir2)">🕌 Aqida (Base)</strong></p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- NIVEAU 3 -->
+                <div style="position:relative;padding-left:40px;opacity:0;animation:slideInLeft 0.8s ease forwards" style="animation-delay:0.4s">
+                  <div style="position:absolute;left:-30px;top:0;width:60px;height:60px;background:linear-gradient(135deg,var(--teal),var(--teal2));border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;box-shadow:0 6px 24px rgba(42,138,154,.35);border:3px solid #fff">3</div>
+                  <div style="background:#fff;border-left:4px solid var(--teal);border-radius:8px;padding:24px;box-shadow:0 4px 16px rgba(42,138,154,.1)">
+                    <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--teal);margin:0 0 4px 0">Année 3</h4>
+                    <p style="font-size:.7rem;color:var(--teal);text-transform:uppercase;letter-spacing:.1em;font-weight:600;margin:0 0 16px 0">🌿 Enracinement</p>
+                    <div style="font-size:.85rem;color:var(--txm);line-height:1.9">
+                      <p style="margin:0 0 10px 0"><strong style="color:var(--noir2)">🔤 Arabe (Suite)</strong><br/>Grammaire avancée & perfectionnement</p>
+                      <p style="margin:0"><strong style="color:var(--noir2)">📚 Fiqh - Tome 3</strong></p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- NIVEAU 5 -->
+                <div style="position:relative;padding-left:40px;opacity:0;animation:slideInLeft 0.8s ease forwards" style="animation-delay:0.8s">
+                  <div style="position:absolute;left:-35px;top:0;width:70px;height:70px;background:linear-gradient(135deg,var(--teal2),var(--teal));border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;box-shadow:0 8px 32px rgba(30,104,120,.4);border:4px solid #fff">⭐</div>
+                  <div style="background:linear-gradient(135deg,rgba(30,104,120,.04),rgba(42,138,154,.04));border-left:4px solid var(--teal2);border-radius:8px;padding:24px;box-shadow:0 6px 20px rgba(42,138,154,.12)">
+                    <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;background:linear-gradient(135deg,var(--teal2),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0 0 4px 0">Année 5</h4>
+                    <p style="font-size:.7rem;background:linear-gradient(135deg,var(--teal2),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin:0 0 16px 0">🌟 Excellence</p>
+                    <div style="font-size:.85rem;color:var(--txm);line-height:1.9">
+                      <p style="margin:0 0 10px 0"><strong style="color:var(--noir2)">🕌 Aqida (Approfondissement)</strong><br/>Maîtrise ultime de la croyance</p>
+                      <p style="margin:0 0 10px 0"><strong style="color:var(--noir2)">📖 Hadith</strong></p>
+                      <p style="margin:0"><strong style="color:var(--noir2)">✨ Tafsir</strong></p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- COLONNE DROITE (Années 2, 4) -->
+              <div style="display:flex;flex-direction:column;gap:60px;padding-top:120px">
+
+                <!-- NIVEAU 2 -->
+                <div style="position:relative;padding-right:40px;opacity:0;animation:slideInRight 0.8s ease forwards" style="animation-delay:0.2s">
+                  <style>@keyframes slideInRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}</style>
+                  <div style="position:absolute;right:-30px;top:0;width:60px;height:60px;background:linear-gradient(135deg,var(--teal),var(--teal2));border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;box-shadow:0 6px 22px rgba(42,138,154,.32);border:3px solid #fff">2</div>
+                  <div style="background:#fff;border-right:4px solid var(--teal);border-radius:8px;padding:24px;box-shadow:0 4px 16px rgba(42,138,154,.1);text-align:right">
+                    <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--teal);margin:0 0 4px 0">Année 2</h4>
+                    <p style="font-size:.7rem;color:var(--teal);text-transform:uppercase;letter-spacing:.1em;font-weight:600;margin:0 0 16px 0">🌱 Croissance</p>
+                    <div style="font-size:.85rem;color:var(--txm);line-height:1.9">
+                      <p style="margin:0 0 10px 0"><strong style="color:var(--noir2)">🔤 Arabe (Grammaire)</strong><br/>Maîtrise des règles linguistiques</p>
+                      <p style="margin:0 0 10px 0"><strong style="color:var(--noir2)">📚 Fiqh - Tome 2</strong></p>
+                      <p style="margin:0"><strong style="color:var(--noir2)">🕌 Aqida</strong></p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- NIVEAU 4 -->
+                <div style="position:relative;padding-right:40px;opacity:0;animation:slideInRight 0.8s ease forwards" style="animation-delay:0.6s">
+                  <div style="position:absolute;right:-30px;top:0;width:60px;height:60px;background:linear-gradient(135deg,var(--teal2),var(--teal));border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;box-shadow:0 6px 26px rgba(30,104,120,.38);border:3px solid #fff">4</div>
+                  <div style="background:#fff;border-right:4px solid var(--teal2);border-radius:8px;padding:24px;box-shadow:0 4px 16px rgba(30,104,120,.1);text-align:right">
+                    <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--teal2);margin:0 0 4px 0">Année 4</h4>
+                    <p style="font-size:.7rem;color:var(--teal2);text-transform:uppercase;letter-spacing:.1em;font-weight:600;margin:0 0 16px 0">🌳 Floraison</p>
+                    <div style="font-size:.85rem;color:var(--txm);line-height:1.9">
+                      <p style="margin:0 0 10px 0"><strong style="color:var(--noir2)">🔤 Arabe</strong><br/>Perfectionnement linguistique</p>
+                      <p style="margin:0 0 10px 0"><strong style="color:var(--noir2)">📖 Hadith</strong><br/>Chaînes de transmission & exégèse</p>
+                      <p style="margin:0"><strong style="color:var(--noir2)">✨ Tafsir</strong><br/>Interprétation du Coran</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════ PAGE INSCRIPTION ══════════════════════ -->
+<div id="page-inscription" class="page">
+  <div class="wrap" style="padding:56px 40px">
+    <div class="slbl">Rejoignez-nous</div>
+    <h2 class="stitle">Inscription <em>2026 / 2027</em></h2>
+    <p class="sdesc">Remplissez le formulaire ci-dessous pour inscrire votre enfant à Baytoul Ilm.</p>
+    <div class="form-shell">
+      <div class="form-head">
+        <div class="form-head-icon">📋</div>
+        <div class="form-head-text">
+          <h3>Formulaire d'inscription — Baytoul Ilm</h3>
+          <p>Veuillez renseigner toutes les informations demandées pour finaliser l'inscription.</p>
+        </div>
+        <div class="form-badge">Année 2026 / 2027</div>
+      </div>
+      <iframe
+        id="JotFormIFrame-261345064692055"
+        title="Formulaire d'inscription"
+        onload="window.parent.scrollTo(0,0)"
+        allowtransparency="true"
+        allow="geolocation; microphone; camera; fullscreen; payment"
+        src="https://form.jotform.com/261345064692055"
+        frameborder="0"
+        class="form-iframe"
+        style="height:539px;"
+        scrolling="no"
+      ></iframe>
+      <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
+      <script>window.jotformEmbedHandler("iframe[id='JotFormIFrame-261345064692055']","https://form.jotform.com/")</script>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ PAGE DONS ══════════════════════ -->
+<div id="page-dons" class="page">
+  <div class="wrap" style="padding:56px 40px">
+    <div class="slbl">Soutenir l'Institut</div>
+    <h2 class="stitle">Faire un <em>Don</em></h2>
+    <p class="sdesc">Votre soutien contribue directement à l'enseignement islamique des enfants de Chiconi. Chaque contribution, grande ou petite, est une sadaqa jâriya.</p>
+    <div class="don-card">
+      <div class="don-row">
+        <div class="don-label">IBAN</div>
+        <div class="don-val">FR76 1871 9000 9100 9135 2810 036</div>
+      </div>
+      <div class="don-row">
+        <div class="don-label">BIC</div>
+        <div class="don-val">BFCOYTYTXXX</div>
+      </div>
+      <div class="don-row">
+        <div class="don-label">Bénéficiaire</div>
+        <div class="don-val">ABCC</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ PAGE RÉGLEMENT ══════════════════════ -->
+<div id="page-reglement" class="page">
+  <div class="wrap" style="padding:56px 40px">
+    <div class="slbl">Cadre de fonctionnement</div>
+    <h2 class="stitle">Règlement <em>Intérieur</em></h2>
+    <p class="sdesc">Règlement intérieur des cours 2026/2027 — Association Bienfaisance et Culturelle de Chiconi (A.B.C.C.)</p>
+
+    <div style="margin-top:48px;background:#ffffff;border:1px solid var(--bd);border-radius:4px;padding:32px;box-shadow:0 2px 8px rgba(42,122,138,.08)">
+      
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:0">Cadre et objectifs</h3>
+      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">Le présent règlement fixe les règles de fonctionnement des cours de Coran organisés par l'Association Bienfaisance et Culturelle de Chiconi. En inscrivant votre enfant, vous vous engagez à respecter ces règles et à veiller à ce que votre enfant en fasse de même.</p>
+
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Inscription et présence</h3>
+      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">Pour participer aux cours, il est obligatoire d'inscrire votre enfant. Il est également nécessaire de signaler toute absence dès qu'elle survient. Les absences répétées et non justifiées peuvent entraîner l'exclusion de votre enfant. En cas de 3 absences injustifiées, l'enfant sera exclu définitivement de l'établissement.</p>
+
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Participation des parents aux réunions</h3>
+      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">La participation des parents aux réunions est obligatoire. En cas de 3 réunions successives non fréquentées par les parents ou tuteurs, l'enfant sera exclu définitivement de l'établissement.</p>
+
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Restriction d'inscription par département</h3>
+      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">Une personne inscrite dans un département ne peut pas s'inscrire simultanément dans un même département ailleurs. Chaque inscription est unique et exclusive à un seul établissement par niveau de cours.</p>
+
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Tenue et matériel</h3>
+      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">Votre enfant doit porter une tenue correcte et adaptée à l'apprentissage religieux. Il doit également apporter son matériel (Coran, cahier, stylo, etc.) à chaque cours.</p>
+
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Sécurité et responsabilité</h3>
+      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">L'association est responsable uniquement à l'intérieur des locaux et durant les horaires de cours. En cas de retards répétés, des mesures peuvent être prises. Pour les problèmes de santé, en urgence grave, les secours sont contactés en priorité puis les parents informés. En urgence non vitale, les parents sont contactés pour décider de la conduite à tenir.</p>
+
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Comportement et discipline</h3>
+      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">Votre enfant doit respecter les autres et le cadre d'apprentissage. Tout manquement suit la procédure de sanction.</p>
+
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Respect des lieux</h3>
+      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">Votre enfant doit respecter les locaux et le matériel. En cas de dégradations volontaires, une réparation ou un remboursement peut être demandé.</p>
+
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Communication avec les familles</h3>
+      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">L'association communiquera via WhatsApp, SMS, appel et affichage. Merci de fournir des coordonnées à jour et de prévenir l'association en cas de changement.</p>
+
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Vos engagements</h3>
+      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">La participation aux réunions, événements et Majlis est attendue. Votre implication est essentielle au bon fonctionnement de l'association.</p>
+
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Cotisations et remboursement</h3>
+      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">Les cotisations financent le fonctionnement de l'association. Elles sont non remboursables, même en cas d'abandon, d'exclusion ou de départ volontaire. Les cotisations doivent être réglées au plus tard entre le 1er et le 5 du mois.</p>
+
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Procédure de sanction</h3>
+      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:16px">Tout manquement aux règles (assiduité, discipline, tenue, matériel, sécurité, respect des locaux) suit la procédure suivante :</p>
+      <ol style="font-size:.95rem;color:var(--txm);line-height:1.9;margin:0 0 24px 20px;padding:0">
+        <li style="margin-bottom:8px">Rappel oral à l'enfant</li>
+        <li style="margin-bottom:8px">Information aux parents</li>
+        <li style="margin-bottom:8px">Exclusion temporaire de l'enfant</li>
+        <li>Exclusion définitive décidée par le bureau de l'association, sans remboursement des cotisations</li>
+      </ol>
+
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Procédure générale pour tout manquement</h3>
+      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:0">Toute infraction au règlement (inscription, présence, discipline, matériel, respect des locaux, sécurité, communication) sera traitée selon la procédure de sanction décrite ci-dessus.</p>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ PAGE CONTACT ══════════════════════ -->
+<div id="page-contact" class="page">
+  <div class="wrap" style="padding:56px 40px">
+    <div class="slbl">Nous joindre</div>
+    <h2 class="stitle">Contact</h2>
+    <p class="sdesc">Pour toute information, demande d'inscription ou question concernant Baytoul Ilm.</p>
+    <div class="form-shell">
+      <div class="form-head">
+        <div class="form-head-icon">✉️</div>
+        <div class="form-head-text">
+          <h3>Envoyez-nous un message</h3>
+          <p>Nous vous répondrons dans les meilleurs délais.</p>
+        </div>
+      </div>
+      <iframe
+        id="JotFormIFrame-261345327062048"
+        title="Formulaire de contact"
+        onload="window.parent.scrollTo(0,0)"
+        allowtransparency="true"
+        allow="geolocation; microphone; camera; fullscreen; payment"
+        src="https://form.jotform.com/261345327062048"
+        frameborder="0"
+        class="form-iframe"
+        style="height:539px;"
+        scrolling="no"
+      ></iframe>
+      <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
+      <script>window.jotformEmbedHandler("iframe[id='JotFormIFrame-261345327062048']","https://form.jotform.com/")</script>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ FOOTER ══════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-brand-name">Baytoul Ilm</div>
+      <div class="footer-brand-ar">بيت العلم</div>
+      <div class="footer-contact">
+        <a href="mailto:baytoulilm13@gmail.com">baytoulilm13@gmail.com</a>
+        <a>84 Av. de Rassi, 97670 Chiconi, Mayotte</a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a onclick="goPage('programme')">Programme</a>
+      <a onclick="goPage('inscription')">Inscription</a>
+      <a onclick="goPage('dons')">Dons</a>
+      <a onclick="goPage('reglement')">Règlement</a>
+      <a onclick="goPage('contact')">Contact</a>
+      <a onclick="openM('privacy')">Confidentialité</a>
+      <a onclick="openM('terms')">Conditions</a>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <p>© 2026 Baytoul Ilm — Institut de Savoir de Chiconi · Mayotte 976</p>
+    <p>Savoir Authentique · Excellence · Intégrité</p>
+  </div>
+</footer>
+
+<!-- MODALES -->
+<div class="mov" id="modal-privacy">
+  <div class="mbox">
+    <div class="mhdr"><h3>Politique de confidentialité</h3><button class="mcls" onclick="closeM('privacy')">✕</button></div>
+    <div class="mbody">
+      <p class="intro">Baytoul Ilm — Institut de Savoir de Chiconi, Mayotte. Mise à jour : septembre 2026.</p>
+      <h4>1. Responsable</h4><p>Institut Baytoul Ilm, 84 Avenue de Rassi, 97670 Chiconi, Mayotte. Email : baytoulilm13@gmail.com</p>
+      <h4>2. Données collectées</h4><p>Nom, prénom, date de naissance, adresse, téléphone, e-mail, niveau scolaire, paiement — via formulaire.</p>
+      <h4>3. Finalité</h4><ul><li>Gestion des inscriptions et suivi pédagogique</li><li>Communication avec les familles</li><li>Gestion administrative et comptable</li></ul>
+      <h4>4. Base légale</h4><p>Exécution d'un contrat et consentement des parents.</p>
+      <h4>5. Conservation</h4><p>Durée de la scolarité + 3 ans.</p>
+      <h4>6. Partage des données</h4><p>Vos données ne sont ni partagées, ni divulguées à des tiers. Elles sont conservées de manière confidentielle et utilisées uniquement par l'Institut Baytoul Ilm.</p>
+      <h4>7. Vos droits</h4><p>Accès, rectification, suppression — contactez-nous par email.</p>
+    </div>
+  </div>
+</div>
+
+<div class="mov" id="modal-terms">
+  <div class="mbox">
+    <div class="mhdr"><h3>Conditions d'utilisation</h3><button class="mcls" onclick="closeM('terms')">✕</button></div>
+    <div class="mbody">
+      <p class="intro">Conditions d'utilisation — Institut Baytoul Ilm, Mayotte.</p>
+      <h4>1. Objet</h4><p>Ces conditions régissent l'utilisation du site web de l'Institut Baytoul Ilm.</p>
+      <h4>2. Formulaire d'inscription</h4><ul><li>Réservé à l'inscription aux cours de l'Institut</li><li>Les informations doivent être exactes et à jour</li><li>L'inscription engage contractuellement les parents ou tuteurs légaux</li></ul>
+      <h4>3. Données personnelles</h4><p>Utilisées uniquement à des fins de gestion pédagogique et administrative.</p>
+      <h4>4. Droit applicable</h4><p>Droit français. Tribunaux de Mamoudzou, Mayotte.</p>
+      <h4>5. Contact</h4><p>baytoulilm13@gmail.com</p>
+    </div>
+  </div>
+</div>
+
+<script>
+function goPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+  const pg=document.getElementById('page-'+id);
+  const tb=document.getElementById('tab-'+id);
+  if(pg)pg.classList.add('active');
+  if(tb)tb.classList.add('active');
+  window.scrollTo(0,0);
+}
+function goPageM(id){goPage(id);document.getElementById('mobile-menu').style.display='none';}
+function toggleMenu(){
+  const m=document.getElementById('mobile-menu');
+  m.style.display=(m.style.display==='flex'?'none':'flex');
+}
+function toggleAcc(key){
+  const body=document.getElementById('body-'+key);
+  const icon=document.getElementById('icon-'+key);
+  const isOpen=body.classList.contains('open');
+  body.classList.toggle('open',!isOpen);
+  icon.classList.toggle('open',!isOpen);
+}
+function openM(id){const m=document.getElementById('modal-'+id);if(m)m.classList.add('open');}
+function closeM(id){const m=document.getElementById('modal-'+id);if(m)m.classList.remove('open');}
+document.querySelectorAll('.mov').forEach(m=>{m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');});});
+</script>
+</body>
+</html>
