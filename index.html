@@ -644,7 +644,7 @@ function addChild(data={}){
   card.innerHTML=`
     <div class="child-card-head">
       <h5>Enfant ${childCount}</h5>
-      <button type="button" class="child-remove" onclick="removeChild(this)" aria-label="Retirer cet enfant">Retirer</button>
+      <button type="button" class="child-remove" aria-label="Retirer cet enfant">Retirer</button>
     </div>
     <div class="form-grid">
       <label>Nom de l'enfant<input name="enfant_nom" value="${escapeAttr(data.nom||'')}" required></label>
@@ -668,11 +668,11 @@ function addChild(data={}){
         </select>
       </label>
     </div>`;
+  card.querySelector('.child-remove').addEventListener('click',()=>removeChild(card));
   list.appendChild(card);
   updateRemoveButtons();
 }
-function removeChild(btn){
-  const card=btn.closest('.child-card');
+function removeChild(card){
   if(card)card.remove();
   updateRemoveButtons();
 }
