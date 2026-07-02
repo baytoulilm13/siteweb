@@ -542,6 +542,188 @@ iframe.form-iframe{
   display:block;
   border:none;
 }
+.inscription-form{
+  padding:32px;
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+}
+.form-section{
+  border:1px solid var(--bd);
+  border-radius:4px;
+  padding:24px;
+  background:#fff;
+}
+.form-section-title{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:20px;
+}
+.form-section-title span{
+  width:28px;
+  height:28px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--teal2);
+  color:#fff;
+  border-radius:3px;
+  font-size:.72rem;
+  font-weight:600;
+}
+.form-section-title h4{
+  font-family:'Cinzel',serif;
+  font-size:.78rem;
+  font-weight:500;
+  color:var(--noir2);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+}
+.form-grid label,
+.checks label{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  color:var(--txm);
+  font-size:.72rem;
+  font-weight:500;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.form-grid input,
+.form-grid select,
+.form-grid textarea{
+  width:100%;
+  border:1px solid var(--bdm);
+  border-radius:4px;
+  padding:12px 13px;
+  font-family:'Jost',sans-serif;
+  font-size:.9rem;
+  color:var(--tx);
+  background:#fff;
+  outline:none;
+  transition:border-color .2s,box-shadow .2s;
+  text-transform:none;
+  letter-spacing:0;
+}
+.form-grid input:focus,
+.form-grid select:focus,
+.form-grid textarea:focus{
+  border-color:var(--teal2);
+  box-shadow:0 0 0 3px rgba(42,138,154,.12);
+}
+.form-grid textarea{resize:vertical;min-height:92px}
+.form-grid .full{grid-column:1/-1}
+.children-list{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  margin-bottom:16px;
+}
+.child-card{
+  border:1px solid var(--bdm);
+  border-radius:4px;
+  padding:20px;
+  background:#f8fbfc;
+}
+.child-card-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:16px;
+}
+.child-card-head h5{
+  font-family:'Cormorant Garamond',serif;
+  color:var(--noir2);
+  font-size:1.1rem;
+  font-weight:700;
+}
+.child-remove,
+.btn-small{
+  border:1px solid var(--bdm);
+  background:#fff;
+  color:var(--teal2);
+  border-radius:4px;
+  padding:9px 13px;
+  font-family:'Jost',sans-serif;
+  font-size:.68rem;
+  font-weight:600;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+.child-remove:disabled{
+  opacity:.4;
+  cursor:not-allowed;
+}
+.btn-small:hover,
+.child-remove:not(:disabled):hover{
+  border-color:var(--teal2);
+  background:rgba(42,138,154,.06);
+}
+.checks{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.checks label{
+  flex-direction:row;
+  align-items:flex-start;
+  text-transform:none;
+  letter-spacing:0;
+  line-height:1.6;
+  font-size:.88rem;
+  font-weight:400;
+}
+.checks input{
+  margin-top:4px;
+  accent-color:var(--teal2);
+}
+.form-actions{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  flex-wrap:wrap;
+}
+.payment-notice{
+  border:1px solid rgba(42,138,154,.22);
+  border-left:4px solid var(--teal2);
+  border-radius:4px;
+  padding:18px 20px;
+  background:#f8fbfc;
+}
+.payment-notice-top{margin-top:28px}
+.payment-notice h4{
+  font-family:'Cinzel',serif;
+  font-size:.75rem;
+  font-weight:600;
+  color:var(--noir2);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin:0 0 10px;
+}
+.payment-notice p{
+  margin:4px 0;
+  color:var(--txm);
+  font-size:.9rem;
+  line-height:1.65;
+}
+.download-link{display:none;text-decoration:none}
+.download-link.show{display:inline-flex}
+.form-status{
+  min-height:24px;
+  font-size:.88rem;
+  color:var(--txm);
+}
+.form-status.success{color:var(--teal2);font-weight:500}
+.form-status.error{color:#a33;font-weight:500}
 
 /* ── DONS ── */
 .don-card{
@@ -730,6 +912,10 @@ footer{
   .don-row{flex-direction:column;gap:6px}
   .form-head{flex-direction:column;align-items:flex-start}
   .form-badge{margin-left:0}
+  .inscription-form{padding:20px}
+  .form-section{padding:18px}
+  .form-grid{grid-template-columns:1fr}
+  .form-actions .btn{width:100%;text-align:center;justify-content:center}
 }
 /* ── COULEURS TEAL (image 2) ── */
 :root{

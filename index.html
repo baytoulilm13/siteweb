@@ -7,6 +7,8 @@
   <title>Baytoul Ilm — Institut de Savoir de Chiconi</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Cinzel:wght@400;500;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link href="style.css" rel="stylesheet" />
+  <script defer src="https://cdn.jsdelivr.net/npm/pizzip@3.1.7/dist/pizzip.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.47.4/docxtemplater.min.js"></script>
 </head>
 <body>
 
@@ -335,6 +337,12 @@
     <div class="slbl">Rejoignez-nous</div>
     <h2 class="stitle">Inscription <em>2026 / 2027</em></h2>
     <p class="sdesc">Remplissez le formulaire ci-dessous pour inscrire votre enfant à Baytoul Ilm.</p>
+    <div class="payment-notice payment-notice-top">
+      <h4>Frais d'inscription annuels</h4>
+      <p>Departement Coran : 240 EUR par enfant, ou 20 EUR par mois pendant 12 mois.</p>
+      <p>Departement Science religieuse : 600 EUR par enfant, ou 50 EUR par mois pendant 12 mois.</p>
+      <p>Le paiement mensuel engage la famille sur l'annee complete.</p>
+    </div>
     <div class="form-shell">
       <div class="form-head">
         <div class="form-head-icon">📋</div>
@@ -344,20 +352,78 @@
         </div>
         <div class="form-badge">Année 2026 / 2027</div>
       </div>
-      <iframe
-        id="JotFormIFrame-261345064692055"
-        title="Formulaire d'inscription"
-        onload="window.parent.scrollTo(0,0)"
-        allowtransparency="true"
-        allow="geolocation; microphone; camera; fullscreen; payment"
-        src="https://form.jotform.com/261345064692055"
-        frameborder="0"
-        class="form-iframe"
-        style="height:539px;"
-        scrolling="no"
-      ></iframe>
-      <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
-      <script>window.jotformEmbedHandler("iframe[id='JotFormIFrame-261345064692055']","https://form.jotform.com/")</script>
+      <form id="inscription-form" class="inscription-form">
+        <div class="form-section">
+          <div class="form-section-title"><span>1</span><h4>Responsable legal 1</h4></div>
+          <div class="form-grid">
+            <label>Nom<input name="parent_nom" autocomplete="family-name" required></label>
+            <label>Prenom<input name="parent_prenom" autocomplete="given-name" required></label>
+            <label>Type
+              <select name="parent_type" required>
+                <option value="">Selectionner</option>
+                <option>Pere</option>
+                <option>Mere</option>
+                <option>Tuteur</option>
+                <option>Autre</option>
+              </select>
+            </label>
+            <label>Adresse<input name="adresse" autocomplete="street-address" required></label>
+            <label>Code postal<input name="code_postal" inputmode="numeric" autocomplete="postal-code" required></label>
+            <label>Ville<input name="ville" autocomplete="address-level2" required></label>
+            <label>Telephone<input name="telephone" type="tel" autocomplete="tel" required></label>
+            <label>Adresse mail<input name="email" type="email" autocomplete="email" required></label>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title"><span>2</span><h4>Responsable legal 2</h4></div>
+          <div class="form-grid">
+            <label>Nom<input name="parent2_nom" autocomplete="family-name"></label>
+            <label>Prenom<input name="parent2_prenom" autocomplete="given-name"></label>
+            <label>Type
+              <select name="parent2_type">
+                <option value="">Selectionner</option>
+                <option>Pere</option>
+                <option>Mere</option>
+                <option>Tuteur</option>
+                <option>Autre</option>
+              </select>
+            </label>
+            <label>Adresse<input name="parent2_adresse" autocomplete="street-address"></label>
+            <label>Code postal<input name="parent2_code_postal" inputmode="numeric" autocomplete="postal-code"></label>
+            <label>Ville<input name="parent2_ville" autocomplete="address-level2"></label>
+            <label>Telephone<input name="parent2_telephone" type="tel" autocomplete="tel"></label>
+            <label>Adresse mail<input name="parent2_email" type="email" autocomplete="email"></label>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title"><span>3</span><h4>Enfants a inscrire</h4></div>
+          <div id="children-list" class="children-list"></div>
+          <button type="button" class="btn-small" onclick="addChild()">Ajouter un enfant</button>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title"><span>4</span><h4>Autorisations</h4></div>
+          <div class="form-grid medical-note-grid">
+            <label class="full">Remarque medicale
+              <textarea name="remarque_médicale" rows="4"></textarea>
+            </label>
+          </div>
+          <div class="checks">
+            <label><input type="checkbox" name="autorisation_sortie" value="oui"> J'autorise mon enfant a quitter les locaux selon les modalites communiquees.</label>
+            <label><input type="checkbox" name="autorisation_image" value="oui"> J'autorise l'utilisation interne de photos dans le cadre des activites de l'institut.</label>
+            <label><input type="checkbox" name="accept_privacy" value="oui" required> J'accepte la transmission des informations a l'administration de Baytoul Ilm.</label>
+            <label><input type="checkbox" name="signature_electronique" value="oui" required> Je certifie exactes les informations renseignees et j'accepte que cette validation vaille signature electronique du dossier d'inscription.</label>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-dore">Generer le dossier</button>
+          <a id="download-link" class="btn btn-out download-link" download>Telecharger a nouveau</a>
+        </div>
+        <p id="inscription-status" class="form-status" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </div>
 </div>
@@ -555,6 +621,231 @@ function toggleAcc(key){
 function openM(id){const m=document.getElementById('modal-'+id);if(m)m.classList.add('open');}
 function closeM(id){const m=document.getElementById('modal-'+id);if(m)m.classList.remove('open');}
 document.querySelectorAll('.mov').forEach(m=>{m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');});});
+const INSCRIPTION_CONFIG={
+  templateUrl:'travail/teamplate_inscription.docx',
+  appsScriptUrl:'https://script.google.com/macros/s/AKfycbwDF83X8hr5o3xoNj0iD-qwXYCe1OOn1Ql4n4-7jAc-VAOl1j96ycmLqfiPH4n3mf8Q/exec'
+};
+
+const EMPTY_DOCX_MARKER='__BAYTOULILM_EMPTY_FIELD__';
+const MAX_CHILDREN=5;
+let childCount=0;
+function addChild(data={}){
+  const existing=document.querySelectorAll('.child-card').length;
+  if(existing>=MAX_CHILDREN){
+    setInscriptionStatus('La template actuelle accepte 5 enfants maximum.', 'error');
+    return;
+  }
+  childCount+=1;
+  const list=document.getElementById('children-list');
+  if(!list)return;
+  const card=document.createElement('div');
+  card.className='child-card';
+  card.dataset.child=String(childCount);
+  card.innerHTML=`
+    <div class="child-card-head">
+      <h5>Enfant ${childCount}</h5>
+      <button type="button" class="child-remove" onclick="removeChild(this)" aria-label="Retirer cet enfant">Retirer</button>
+    </div>
+    <div class="form-grid">
+      <label>Nom de l'enfant<input name="enfant_nom" value="${escapeAttr(data.nom||'')}" required></label>
+      <label>Prenom de l'enfant<input name="enfant_prenom" value="${escapeAttr(data.prenom||'')}" required></label>
+      <label>Date de naissance<input name="date_naissance" type="date" value="${escapeAttr(data.date_naissance||'')}" required></label>
+      <label>Niveau demande
+        <select name="niveau_demande" required>
+          <option value="">Selectionner</option>
+          <option${data.niveau_demande==='Classe Initiation'?' selected':''}>Classe Initiation</option>
+          <option${data.niveau_demande==='Classe Approfondissement'?' selected':''}>Classe Approfondissement</option>
+          <option${data.niveau_demande==='Parcours Hifdh'?' selected':''}>Parcours Hifdh</option>
+          <option${data.niveau_demande==='Parcours Itqan'?' selected':''}>Parcours Itqan</option>
+        </select>
+      </label>
+      <label>Departement
+        <select name="departement">
+          <option value="">Selectionner</option>
+          <option>Coran</option>
+          <option>Science religieuse</option>
+          <option>Coran et science religieuse</option>
+        </select>
+      </label>
+    </div>`;
+  list.appendChild(card);
+  updateRemoveButtons();
+}
+function removeChild(btn){
+  const card=btn.closest('.child-card');
+  if(card)card.remove();
+  updateRemoveButtons();
+}
+function updateRemoveButtons(){
+  const cards=document.querySelectorAll('.child-card');
+  const addButton=document.querySelector('[onclick="addChild()"]');
+  cards.forEach((card,index)=>{
+    const title=card.querySelector('h5');
+    const remove=card.querySelector('.child-remove');
+    if(title)title.textContent=`Enfant ${index+1}`;
+    if(remove)remove.disabled=cards.length===1;
+  });
+  if(addButton) addButton.disabled=cards.length>=MAX_CHILDREN;
+}
+function escapeHtml(value){
+  return String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+}
+function escapeAttr(value){return escapeHtml(value);}
+function fieldValue(form,name){return (form.elements[name]?.value||'').trim();}
+function checkedValue(form,name){return form.elements[name]?.checked?'oui':'non';}
+function checkedBox(form,name){return form.elements[name]?.checked?'☑':'☐';}
+function optionalDocxValue(value){return value&&value.trim()?value.trim():EMPTY_DOCX_MARKER;}
+function formatSignatureDate(date){
+  return new Intl.DateTimeFormat('fr-FR',{dateStyle:'long',timeStyle:'short'}).format(date);
+}
+function collectInscriptionData(form){
+  const signatureDate=new Date();
+  const enfants=[...document.querySelectorAll('.child-card')].map(card=>({
+    nom:card.querySelector('[name="enfant_nom"]').value.trim(),
+    prenom:card.querySelector('[name="enfant_prenom"]').value.trim(),
+    date_naissance:card.querySelector('[name="date_naissance"]').value,
+    niveau_demande:card.querySelector('[name="niveau_demande"]').value.trim(),
+    departement:card.querySelector('[name="departement"]').value,
+  }));
+  const data={
+    submitted_at:new Date().toISOString(),
+    parent_type:fieldValue(form,'parent_type'),
+    parent_nom:fieldValue(form,'parent_nom'),
+    parent_prenom:fieldValue(form,'parent_prenom'),
+    adresse:fieldValue(form,'adresse'),
+    code_postal:fieldValue(form,'code_postal'),
+    ville:fieldValue(form,'ville'),
+    telephone:fieldValue(form,'telephone'),
+    email:fieldValue(form,'email'),
+    parent2_type:optionalDocxValue(fieldValue(form,'parent2_type')),
+    parent2_nom:optionalDocxValue(fieldValue(form,'parent2_nom')),
+    parent2_prenom:optionalDocxValue(fieldValue(form,'parent2_prenom')),
+    parent2_adresse:optionalDocxValue(fieldValue(form,'parent2_adresse')),
+    parent2_code_postal:optionalDocxValue(fieldValue(form,'parent2_code_postal')),
+    parent2_ville:optionalDocxValue(fieldValue(form,'parent2_ville')),
+    parent2_telephone:optionalDocxValue(fieldValue(form,'parent2_telephone')),
+    parent2_email:optionalDocxValue(fieldValue(form,'parent2_email')),
+    remarque_médicale:optionalDocxValue(fieldValue(form,'remarque_médicale')),
+    autorisation_sortie:checkedValue(form,'autorisation_sortie'),
+    autorisation_image:checkedValue(form,'autorisation_image'),
+    accept_privacy:checkedValue(form,'accept_privacy'),
+    signature_electronique:checkedValue(form,'signature_electronique'),
+    signature_nom:`${fieldValue(form,'parent_prenom')} ${fieldValue(form,'parent_nom')}`.trim(),
+    date_signature:formatSignatureDate(signatureDate),
+    signature_timestamp:signatureDate.toISOString(),
+    check_autorisation_sortie:checkedBox(form,'autorisation_sortie'),
+    check_autorisation_image:checkedBox(form,'autorisation_image'),
+    check_accept_privacy:checkedBox(form,'accept_privacy'),
+    enfants,
+    enfants_texte:enfants.map((e,i)=>`${i+1}. ${e.nom} ${e.prenom} - ${e.date_naissance} - ${e.niveau_demande}`).join('\n')
+  };
+  for(let i=1;i<=MAX_CHILDREN;i+=1){
+    const enfant=enfants[i-1]||{};
+    data[`nom_${i}`]=optionalDocxValue(enfant.nom||'');
+    data[`prenom_${i}`]=optionalDocxValue(enfant.prenom||'');
+    data[`date_naissance_${i}`]=optionalDocxValue(enfant.date_naissance||'');
+    data[`niveau_demande_${i}`]=optionalDocxValue(enfant.niveau_demande||'');
+  }
+  return data;
+}
+async function generateDocx(data){
+  if(!window.PizZip||!window.docxtemplater)throw new Error('Les bibliotheques de generation DOCX ne sont pas chargees.');
+  const response=await fetch(INSCRIPTION_CONFIG.templateUrl);
+  if(!response.ok)throw new Error('Modele DOCX introuvable.');
+  const content=await response.arrayBuffer();
+  const zip=new PizZip(content);
+  const doc=new window.docxtemplater(zip,{paragraphLoop:true,linebreaks:true,delimiters:{start:'{{',end:'}}'}});
+  doc.render(data);
+  applyMissingValueStyle(doc.getZip());
+  return doc.getZip().generate({type:'blob',mimeType:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
+}
+function applyMissingValueStyle(zip){
+  const path='word/document.xml';
+  let xml=zip.file(path).asText();
+  xml=xml.replace(/<w:tc\b[\s\S]*?<\/w:tc>/g,cell=>{
+    if(!cell.includes(EMPTY_DOCX_MARKER))return cell;
+    let shaded=cell.split(EMPTY_DOCX_MARKER).join('');
+    shaded=shaded.replace(/<w:t([^>]*)>\s*<\/w:t>/g,'<w:t$1></w:t>');
+    if(/<w:tcPr\b[\s\S]*?<\/w:tcPr>/.test(shaded)){
+      shaded=shaded.replace(/<w:tcPr\b([\s\S]*?)<\/w:tcPr>/,(match,content)=>{
+        const withoutShading=content.replace(/<w:shd\b[^>]*\/>/g,'');
+        return `<w:tcPr${withoutShading}<w:shd w:val="clear" w:color="auto" w:fill="B2B2B2"/></w:tcPr>`;
+      });
+    }else{
+      shaded=shaded.replace('<w:tc>','<w:tc><w:tcPr><w:shd w:val="clear" w:color="auto" w:fill="B2B2B2"/></w:tcPr>');
+    }
+    return shaded;
+  });
+  zip.file(path,xml);
+}
+function downloadBlob(blob,data){
+  const link=document.getElementById('download-link');
+  const family=(data.parent_nom||'famille').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  const filename=`dossier-inscription-baytoul-ilm-${family||'famille'}.docx`;
+  const url=URL.createObjectURL(blob);
+  link.href=url;
+  link.download=filename;
+  link.classList.add('show');
+  const temp=document.createElement('a');
+  temp.href=url;
+  temp.download=filename;
+  document.body.appendChild(temp);
+  temp.click();
+  temp.remove();
+}
+async function sendToSheet(data){
+  if(!INSCRIPTION_CONFIG.appsScriptUrl)return 'skip';
+  await fetch(INSCRIPTION_CONFIG.appsScriptUrl,{
+    method:'POST',
+    mode:'no-cors',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body:JSON.stringify(sanitizeSheetData(data))
+  });
+  return 'sent';
+}
+function sanitizeSheetData(value){
+  if(Array.isArray(value))return value.map(sanitizeSheetData);
+  if(value&&typeof value==='object'){
+    return Object.fromEntries(Object.entries(value).map(([key,item])=>[key,sanitizeSheetData(item)]));
+  }
+  return value===EMPTY_DOCX_MARKER?'':value;
+}
+function setInscriptionStatus(message,type=''){
+  const status=document.getElementById('inscription-status');
+  if(!status)return;
+  status.textContent=message;
+  status.className=`form-status ${type}`.trim();
+}
+async function handleInscriptionSubmit(event){
+  event.preventDefault();
+  const form=event.currentTarget;
+  if(!form.reportValidity())return;
+  if(!document.querySelector('.child-card')){
+    addChild();
+    setInscriptionStatus('Ajoutez au moins un enfant.', 'error');
+    return;
+  }
+  const submit=form.querySelector('[type="submit"]');
+  submit.disabled=true;
+  setInscriptionStatus('Generation du dossier en cours...');
+  try{
+    const data=collectInscriptionData(form);
+    const blob=await generateDocx(data);
+    downloadBlob(blob,data);
+    const sheetStatus=await sendToSheet(data);
+    setInscriptionStatus(sheetStatus==='sent'?'Votre dossier a ete genere et vos informations ont ete transmises.':'Votre dossier a ete genere. Configurez l URL Apps Script pour activer l envoi Google Sheet.','success');
+  }catch(error){
+    console.error(error);
+    setInscriptionStatus(error.message||'Une erreur est survenue pendant la generation du dossier.','error');
+  }finally{
+    submit.disabled=false;
+  }
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  addChild();
+  const form=document.getElementById('inscription-form');
+  if(form)form.addEventListener('submit',handleInscriptionSubmit);
+});
 </script>
 </body>
 </html>
