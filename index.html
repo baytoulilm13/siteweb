@@ -9,6 +9,50 @@
   <link href="style.css" rel="stylesheet" />
   <script defer src="https://cdn.jsdelivr.net/npm/pizzip@3.1.7/dist/pizzip.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.47.4/docxtemplater.min.js"></script>
+  <style>
+    .sr-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:40px 60px;
+    }
+    .sr-card{
+      background:#fff;
+      border-radius:8px;
+      padding:24px;
+      box-shadow:0 4px 16px rgba(30,104,120,.1);
+      border-left:4px solid var(--teal2);
+    }
+    .sr-card--alt{ border-left-color:var(--teal); }
+    .sr-card--star{
+      background:linear-gradient(135deg,rgba(30,104,120,.04),rgba(42,138,154,.04));
+      box-shadow:0 6px 20px rgba(42,138,154,.12);
+    }
+    .sr-badge{
+      width:48px;height:48px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      color:#fff;font-family:'Cormorant Garamond',serif;
+      font-size:1.4rem;font-weight:700;
+      background:linear-gradient(135deg,var(--teal2),var(--teal));
+      margin-bottom:14px;
+      box-shadow:0 4px 14px rgba(30,104,120,.3);
+    }
+    .sr-year{
+      font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;
+      color:var(--teal2);margin:0 0 4px 0;
+    }
+    .sr-eyebrow{
+      font-size:.7rem;color:var(--teal2);text-transform:uppercase;
+      letter-spacing:.1em;font-weight:600;margin:0 0 16px 0;
+    }
+    .sr-body{ font-size:.85rem;color:var(--txm);line-height:1.9; }
+    .sr-body p{ margin:0 0 10px 0; }
+    .sr-body p:last-child{ margin-bottom:0; }
+    .sr-body strong{ color:var(--noir2); }
+    @media (max-width:768px){
+      .sr-grid{ grid-template-columns:1fr; gap:24px; }
+      .sr-card{ padding:20px; }
+    }
+  </style>
 </head>
 <body>
 
@@ -211,114 +255,75 @@
       </div>
       <div class="acc-body" id="body-science">
         
-        <!-- SCHÉMA SPIRALE ASCENDANTE UNIQUE -->
-        <div style="padding:80px 40px;background:radial-gradient(circle at center,rgba(42,138,154,.03),rgba(30,104,120,.02));border-radius:16px;position:relative;overflow:hidden">
-          
-          <!-- Spirale SVG de fond -->
-          <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:.15" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <linearGradient id="spiralGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:var(--teal2)" />
-                <stop offset="100%" style="stop-color:var(--teal)" />
-              </linearGradient>
-            </defs>
-            <path d="M500,100 Q600,150 650,250 Q680,350 650,450 Q600,500 500,520 Q400,540 350,480 Q300,400 320,300 Q350,200 450,150" stroke="url(#spiralGrad)" stroke-width="20" fill="none" stroke-linecap="round"/>
-          </svg>
+        <!-- GRILLE RESPONSIVE — visible entièrement sur mobile (1 colonne) -->
+        <div style="padding:56px 24px;background:radial-gradient(circle at center,rgba(42,138,154,.03),rgba(30,104,120,.02));border-radius:16px">
 
-          <!-- CONTENU CENTRAL -->
-          <div style="max-width:900px;margin:0 auto;position:relative;z-index:2">
-            
-            <!-- Titre central -->
-            <div style="text-align:center;margin-bottom:80px">
-              <h3 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--noir2);margin:0 0 12px 0">Cursus et Matières par Niveau</h3>
-              <div style="width:60px;height:3px;background:linear-gradient(90deg,var(--teal2),var(--teal));margin:0 auto 16px"></div>
-              <p style="font-size:.9rem;color:var(--txm);font-style:italic">Une montée progressive vers l'excellence islamique</p>
+          <!-- Titre central -->
+          <div style="text-align:center;margin-bottom:48px">
+            <h3 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--noir2);margin:0 0 12px 0">Cursus et Matières par Niveau</h3>
+            <div style="width:60px;height:3px;background:linear-gradient(90deg,var(--teal2),var(--teal));margin:0 auto 16px"></div>
+            <p style="font-size:.9rem;color:var(--txm);font-style:italic">Une montée progressive vers l'excellence islamique</p>
+          </div>
+
+          <div class="sr-grid">
+
+            <!-- ANNÉE 1 -->
+            <div class="sr-card">
+              <div class="sr-badge">1</div>
+              <h4 class="sr-year">Année 1</h4>
+              <p class="sr-eyebrow">🌱 Germination</p>
+              <div class="sr-body">
+                <p><strong>🔤 Arabe (Initiation)</strong><br/>Écriture, vocabulaire, conjugaison & formes verbales<br/>Expression orale</p>
+                <p><strong>📚 Fiqh - Tome 1</strong></p>
+                <p><strong>🕌 Aqida (Base)</strong></p>
+              </div>
             </div>
 
-            <!-- GRILLE SPIRALE -->
-            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:60px 80px;position:relative">
-
-              <!-- COLONNE GAUCHE (Années 1, 3, 5) -->
-              <div style="display:flex;flex-direction:column;gap:60px">
-
-                <!-- NIVEAU 1 -->
-                <div style="position:relative;padding-left:40px;opacity:0;animation:slideInLeft 0.8s ease forwards" style="animation-delay:0s">
-                  <style>@keyframes slideInLeft{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}</style>
-                  <div style="position:absolute;left:-30px;top:0;width:60px;height:60px;background:linear-gradient(135deg,var(--teal2),var(--teal2));border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;box-shadow:0 6px 20px rgba(30,104,120,.3);border:3px solid #fff">1</div>
-                  <div style="background:#fff;border-left:4px solid var(--teal2);border-radius:8px;padding:24px;box-shadow:0 4px 16px rgba(30,104,120,.1)">
-                    <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--teal2);margin:0 0 4px 0">Année 1</h4>
-                    <p style="font-size:.7rem;color:var(--teal2);text-transform:uppercase;letter-spacing:.1em;font-weight:600;margin:0 0 16px 0">🌱 Germination</p>
-                    <div style="font-size:.85rem;color:var(--txm);line-height:1.9">
-                      <p style="margin:0 0 10px 0"><strong style="color:var(--noir2)">🔤 Arabe (Initiation)</strong><br/>Écriture, vocabulaire, conjugaison & formes verbales</p>
-                      <p style="margin:0 0 10px 0"><strong style="color:var(--noir2)">📚 Fiqh - Tome 1</strong></p>
-                      <p style="margin:0"><strong style="color:var(--noir2)">🕌 Aqida (Base)</strong></p>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- NIVEAU 3 -->
-                <div style="position:relative;padding-left:40px;opacity:0;animation:slideInLeft 0.8s ease forwards" style="animation-delay:0.4s">
-                  <div style="position:absolute;left:-30px;top:0;width:60px;height:60px;background:linear-gradient(135deg,var(--teal),var(--teal2));border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;box-shadow:0 6px 24px rgba(42,138,154,.35);border:3px solid #fff">3</div>
-                  <div style="background:#fff;border-left:4px solid var(--teal);border-radius:8px;padding:24px;box-shadow:0 4px 16px rgba(42,138,154,.1)">
-                    <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--teal);margin:0 0 4px 0">Année 3</h4>
-                    <p style="font-size:.7rem;color:var(--teal);text-transform:uppercase;letter-spacing:.1em;font-weight:600;margin:0 0 16px 0">🌿 Enracinement</p>
-                    <div style="font-size:.85rem;color:var(--txm);line-height:1.9">
-                      <p style="margin:0 0 10px 0"><strong style="color:var(--noir2)">🔤 Arabe (Suite)</strong><br/>Grammaire avancée & perfectionnement</p>
-                      <p style="margin:0"><strong style="color:var(--noir2)">📚 Fiqh - Tome 3</strong></p>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- NIVEAU 5 -->
-                <div style="position:relative;padding-left:40px;opacity:0;animation:slideInLeft 0.8s ease forwards" style="animation-delay:0.8s">
-                  <div style="position:absolute;left:-35px;top:0;width:70px;height:70px;background:linear-gradient(135deg,var(--teal2),var(--teal));border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;box-shadow:0 8px 32px rgba(30,104,120,.4);border:4px solid #fff">⭐</div>
-                  <div style="background:linear-gradient(135deg,rgba(30,104,120,.04),rgba(42,138,154,.04));border-left:4px solid var(--teal2);border-radius:8px;padding:24px;box-shadow:0 6px 20px rgba(42,138,154,.12)">
-                    <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;background:linear-gradient(135deg,var(--teal2),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0 0 4px 0">Année 5</h4>
-                    <p style="font-size:.7rem;background:linear-gradient(135deg,var(--teal2),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin:0 0 16px 0">🌟 Excellence</p>
-                    <div style="font-size:.85rem;color:var(--txm);line-height:1.9">
-                      <p style="margin:0 0 10px 0"><strong style="color:var(--noir2)">🕌 Aqida (Approfondissement)</strong><br/>Maîtrise ultime de la croyance</p>
-                      <p style="margin:0 0 10px 0"><strong style="color:var(--noir2)">📖 Hadith</strong></p>
-                      <p style="margin:0"><strong style="color:var(--noir2)">✨ Tafsir</strong></p>
-                    </div>
-                  </div>
-                </div>
-
+            <!-- ANNÉE 2 -->
+            <div class="sr-card sr-card--alt">
+              <div class="sr-badge">2</div>
+              <h4 class="sr-year">Année 2</h4>
+              <p class="sr-eyebrow">🌱 Croissance</p>
+              <div class="sr-body">
+                <p><strong>🔤 Arabe (Grammaire et morphologie)</strong><br/>Maîtrise des règles linguistiques<br/>Expression orale</p>
+                <p><strong>📚 Fiqh - Tome 2</strong></p>
+                <p><strong>🕌 Aqida (la suite)</strong></p>
               </div>
+            </div>
 
-              <!-- COLONNE DROITE (Années 2, 4) -->
-              <div style="display:flex;flex-direction:column;gap:60px;padding-top:120px">
-
-                <!-- NIVEAU 2 -->
-                <div style="position:relative;padding-right:40px;opacity:0;animation:slideInRight 0.8s ease forwards" style="animation-delay:0.2s">
-                  <style>@keyframes slideInRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}</style>
-                  <div style="position:absolute;right:-30px;top:0;width:60px;height:60px;background:linear-gradient(135deg,var(--teal),var(--teal2));border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;box-shadow:0 6px 22px rgba(42,138,154,.32);border:3px solid #fff">2</div>
-                  <div style="background:#fff;border-right:4px solid var(--teal);border-radius:8px;padding:24px;box-shadow:0 4px 16px rgba(42,138,154,.1);text-align:right">
-                    <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--teal);margin:0 0 4px 0">Année 2</h4>
-                    <p style="font-size:.7rem;color:var(--teal);text-transform:uppercase;letter-spacing:.1em;font-weight:600;margin:0 0 16px 0">🌱 Croissance</p>
-                    <div style="font-size:.85rem;color:var(--txm);line-height:1.9">
-                      <p style="margin:0 0 10px 0"><strong style="color:var(--noir2)">🔤 Arabe (Grammaire)</strong><br/>Maîtrise des règles linguistiques</p>
-                      <p style="margin:0 0 10px 0"><strong style="color:var(--noir2)">📚 Fiqh - Tome 2</strong></p>
-                      <p style="margin:0"><strong style="color:var(--noir2)">🕌 Aqida</strong></p>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- NIVEAU 4 -->
-                <div style="position:relative;padding-right:40px;opacity:0;animation:slideInRight 0.8s ease forwards" style="animation-delay:0.6s">
-                  <div style="position:absolute;right:-30px;top:0;width:60px;height:60px;background:linear-gradient(135deg,var(--teal2),var(--teal));border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;box-shadow:0 6px 26px rgba(30,104,120,.38);border:3px solid #fff">4</div>
-                  <div style="background:#fff;border-right:4px solid var(--teal2);border-radius:8px;padding:24px;box-shadow:0 4px 16px rgba(30,104,120,.1);text-align:right">
-                    <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--teal2);margin:0 0 4px 0">Année 4</h4>
-                    <p style="font-size:.7rem;color:var(--teal2);text-transform:uppercase;letter-spacing:.1em;font-weight:600;margin:0 0 16px 0">🌳 Floraison</p>
-                    <div style="font-size:.85rem;color:var(--txm);line-height:1.9">
-                      <p style="margin:0 0 10px 0"><strong style="color:var(--noir2)">🔤 Arabe</strong><br/>Perfectionnement linguistique</p>
-                      <p style="margin:0 0 10px 0"><strong style="color:var(--noir2)">📖 Hadith</strong><br/>Chaînes de transmission & exégèse</p>
-                      <p style="margin:0"><strong style="color:var(--noir2)">✨ Tafsir</strong><br/>Interprétation du Coran</p>
-                    </div>
-                  </div>
-                </div>
-
+            <!-- ANNÉE 3 -->
+            <div class="sr-card">
+              <div class="sr-badge">3</div>
+              <h4 class="sr-year">Année 3</h4>
+              <p class="sr-eyebrow">🌿 Enracinement</p>
+              <div class="sr-body">
+                <p><strong>🔤 Arabe (Grammaire et morphologie)</strong><br/>Grammaire avancée & perfectionnement</p>
+                <p><strong>📚 Fiqh - Tome 3</strong></p>
               </div>
+            </div>
 
+            <!-- ANNÉE 4 -->
+            <div class="sr-card sr-card--alt">
+              <div class="sr-badge">4</div>
+              <h4 class="sr-year">Année 4</h4>
+              <p class="sr-eyebrow">🌳 Floraison</p>
+              <div class="sr-body">
+                <p><strong>🔤 Arabe (Grammaire et morphologie)</strong><br/>Perfectionnement linguistique</p>
+                <p><strong>📖 Hadith (Traduction et commentaire des 40 hadiths d'An-Nawawi)</strong></p>
+                <p><strong>✨ Tafsir (Exégèse du Coran)</strong></p>
+              </div>
+            </div>
+
+            <!-- ANNÉE 5 -->
+            <div class="sr-card sr-card--star">
+              <div class="sr-badge">⭐</div>
+              <h4 class="sr-year">Année 5</h4>
+              <p class="sr-eyebrow">🌟 Excellence</p>
+              <div class="sr-body">
+                <p><strong>🕌 Aqida (Approfondissement)</strong></p>
+                <p><strong>📖 Hadith (Suite)</strong></p>
+                <p><strong>✨ Tafsir (Exégèse du Coran)</strong></p>
+              </div>
             </div>
 
           </div>
@@ -520,20 +525,18 @@
           <p>Nous vous répondrons dans les meilleurs délais.</p>
         </div>
       </div>
-      <iframe
-        id="JotFormIFrame-261345327062048"
-        title="Formulaire de contact"
-        onload="window.parent.scrollTo(0,0)"
-        allowtransparency="true"
-        allow="geolocation; microphone; camera; fullscreen; payment"
-        src="https://form.jotform.com/261345327062048"
-        frameborder="0"
-        class="form-iframe"
-        style="height:539px;"
-        scrolling="no"
-      ></iframe>
-      <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
-      <script>window.jotformEmbedHandler("iframe[id='JotFormIFrame-261345327062048']","https://form.jotform.com/")</script>
+      <form id="contact-form" class="inscription-form" onsubmit="handleContactSubmit(event)">
+        <div class="form-grid">
+          <label>Nom<input name="contact_nom" autocomplete="name" required></label>
+          <label>Adresse mail<input name="contact_email" type="email" autocomplete="email" required></label>
+          <label class="full">Sujet<input name="contact_sujet"></label>
+          <label class="full">Message<textarea name="contact_message" rows="5" required></textarea></label>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-dore">Envoyer</button>
+        </div>
+        <p id="contact-status" class="form-status" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </div>
 </div>
@@ -621,6 +624,24 @@ function toggleAcc(key){
 function openM(id){const m=document.getElementById('modal-'+id);if(m)m.classList.add('open');}
 function closeM(id){const m=document.getElementById('modal-'+id);if(m)m.classList.remove('open');}
 document.querySelectorAll('.mov').forEach(m=>{m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');});});
+
+function handleContactSubmit(event){
+  event.preventDefault();
+  const form=event.currentTarget;
+  const nom=form.contact_nom.value.trim();
+  const email=form.contact_email.value.trim();
+  const sujet=form.contact_sujet.value.trim()||'Message depuis le site Baytoul Ilm';
+  const message=form.contact_message.value.trim();
+  const status=document.getElementById('contact-status');
+  const body=`Nom : ${nom}\nEmail : ${email}\n\n${message}`;
+  const mailto=`mailto:baytoulilm13@gmail.com?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(body)}`;
+  window.location.href=mailto;
+  if(status){
+    status.className='form-status success';
+    status.textContent='Votre messagerie va s\'ouvrir pour finaliser l\'envoi.';
+  }
+}
+
 const INSCRIPTION_CONFIG={
   templateUrl:'travail/teamplate_inscription.docx',
   appsScriptUrl:'https://script.google.com/macros/s/AKfycbxgmjhyE2oyBix8cpYrYouCnfHUAfFAsT2ep_FyxWreSFuBHsCyXgmwRd9J7k7zPQrjOQ/exec'
