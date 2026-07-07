@@ -53,9 +53,92 @@
       .sr-grid{ grid-template-columns:1fr; gap:24px; }
       .sr-card{ padding:20px; }
     }
+
+    /* ── Bannière d'inscription (popup) ── */
+    .insc-overlay{
+      position:fixed; inset:0; z-index:9999;
+      background:rgba(10,20,22,.55);
+      display:flex; align-items:center; justify-content:center;
+      padding:20px;
+      opacity:0; pointer-events:none;
+      transition:opacity .25s ease;
+    }
+    .insc-overlay.open{ opacity:1; pointer-events:auto; }
+    .insc-box{
+      position:relative;
+      background:#fff;
+      border-radius:12px;
+      max-width:480px; width:100%;
+      padding:40px 32px 32px;
+      text-align:center;
+      box-shadow:0 20px 60px rgba(0,0,0,.35);
+      border-top:4px solid var(--teal2);
+      transform:translateY(12px);
+      transition:transform .25s ease;
+    }
+    .insc-overlay.open .insc-box{ transform:translateY(0); }
+    .insc-close{
+      position:absolute; top:12px; right:12px;
+      width:32px; height:32px; border-radius:50%;
+      border:none; background:rgba(0,0,0,.06);
+      color:var(--noir2,#1a1a1a); font-size:1.1rem; line-height:1;
+      cursor:pointer; display:flex; align-items:center; justify-content:center;
+    }
+    .insc-close:hover{ background:rgba(0,0,0,.12); }
+    .insc-logo{ width:64px; height:auto; margin:0 auto 14px; display:block; }
+    .insc-eyebrow{
+      font-size:.7rem; text-transform:uppercase; letter-spacing:.12em;
+      color:var(--teal2); font-weight:600; margin-bottom:10px;
+    }
+    .insc-title{
+      font-family:'Cormorant Garamond',serif; font-weight:700;
+      font-size:1.6rem; color:var(--noir2,#1a1a1a); margin:0 0 6px 0;
+    }
+    .insc-dates{
+      font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-style:italic;
+      color:var(--dore3,#a8842e); margin:0 0 22px 0;
+    }
+    .insc-depts{
+      display:flex; gap:12px; margin-bottom:20px;
+    }
+    .insc-dept{
+      flex:1; padding:16px 10px; border-radius:8px;
+      background:rgba(30,104,120,.05);
+      border:1px solid rgba(30,104,120,.15);
+      cursor:pointer; font-size:.85rem; font-weight:600;
+      color:var(--noir2,#1a1a1a);
+      transition:background .15s ease;
+    }
+    .insc-dept:hover{ background:rgba(30,104,120,.1); }
+    .insc-dept-icon{ font-size:1.3rem; display:block; margin-bottom:6px; }
+    @media (max-width:480px){
+      .insc-box{ padding:32px 20px 24px; }
+      .insc-depts{ flex-direction:column; }
+    }
   </style>
 </head>
 <body>
+
+<!-- ══════════════════════ POPUP INSCRIPTION ══════════════════════ -->
+<div class="insc-overlay" id="insc-overlay">
+  <div class="insc-box">
+    <button class="insc-close" id="insc-close" aria-label="Fermer">✕</button>
+    <img src="logo1.png" alt="Baytoul Ilm" class="insc-logo">
+    <p class="insc-eyebrow">Année scolaire 2026 / 2027</p>
+    <h3 class="insc-title">Inscriptions ouvertes</h3>
+    <p class="insc-dates">Du 1er Août au 28 Septembre</p>
+    <div class="insc-depts">
+      <div class="insc-dept" onclick="goToInscription()">
+        <span class="insc-dept-icon">📖</span>
+        Département du Coran
+      </div>
+      <div class="insc-dept" onclick="goToInscription()">
+        <span class="insc-dept-icon">🕌</span>
+        Département de Sciences Religieuses
+      </div>
+    </div>
+  </div>
+</div>
 
 <header id="site-header">
   <div class="hdr-inner">
@@ -868,7 +951,27 @@ document.addEventListener('DOMContentLoaded',()=>{
   addChild();
   const form=document.getElementById('inscription-form');
   if(form)form.addEventListener('submit',handleInscriptionSubmit);
+  initInscriptionPopup();
 });
+
+function initInscriptionPopup(){
+  const overlay=document.getElementById('insc-overlay');
+  const closeBtn=document.getElementById('insc-close');
+  if(!overlay)return;
+  if(sessionStorage.getItem('biInscPopupClosed')==='1')return;
+  requestAnimationFrame(()=>overlay.classList.add('open'));
+  closeBtn.addEventListener('click',closeInscriptionPopup);
+  overlay.addEventListener('click',e=>{ if(e.target===overlay) closeInscriptionPopup(); });
+}
+function closeInscriptionPopup(){
+  const overlay=document.getElementById('insc-overlay');
+  if(overlay)overlay.classList.remove('open');
+  sessionStorage.setItem('biInscPopupClosed','1');
+}
+function goToInscription(){
+  closeInscriptionPopup();
+  goPage('inscription');
+}
 </script>
 </body>
 </html>
