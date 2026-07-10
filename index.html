@@ -356,7 +356,7 @@
               <li>Savoir lire le Coran avec Tajwid, avant toute chose.</li>
               <li>Être impliqué dans le suivi des cours et capable de prendre des notes.</li>
               <li>Présence obligatoire, ponctualité et régularité exigées.</li>
-              <li> Âge requis : Entre 15 et 20 ans maximum. Des élèves plus jeunes peuvent toutefois être admis s'ils démontrent les capacités nécessaires pour suivre les cours.</li>
+              <li>Âge : de 15 à 20 ans maximum. Des élèves plus jeunes peuvent toutefois être admis s'ils démontrent les capacités nécessaires pour suivre les cours.</li>
             </ul>
           </div>
 
@@ -712,8 +712,17 @@ function goPage(id){
   const tb=document.getElementById('tab-'+id);
   if(pg)pg.classList.add('active');
   if(tb)tb.classList.add('active');
+  if(location.hash.replace('#','')!==id){
+    history.replaceState(null,'','#'+id);
+  }
   window.scrollTo(0,0);
 }
+function openPageFromHash(){
+  const validPages=['home','programme','inscription','dons','reglement','contact'];
+  const id=location.hash.replace('#','');
+  if(validPages.includes(id)) goPage(id);
+}
+window.addEventListener('hashchange',openPageFromHash);
 function goPageM(id){goPage(id);document.getElementById('mobile-menu').style.display='none';}
 function toggleMenu(){
   const m=document.getElementById('mobile-menu');
@@ -971,6 +980,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   addChild();
   const form=document.getElementById('inscription-form');
   if(form)form.addEventListener('submit',handleInscriptionSubmit);
+  openPageFromHash();
   initInscriptionPopup();
 });
 
@@ -978,6 +988,7 @@ function initInscriptionPopup(){
   const overlay=document.getElementById('insc-overlay');
   const closeBtn=document.getElementById('insc-close');
   if(!overlay)return;
+  if(location.hash.replace('#','')==='inscription')return;
   if(sessionStorage.getItem('biInscPopupClosed')==='1')return;
   requestAnimationFrame(()=>overlay.classList.add('open'));
   closeBtn.addEventListener('click',closeInscriptionPopup);
