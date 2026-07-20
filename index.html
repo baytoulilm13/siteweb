@@ -55,37 +55,80 @@
     }
 
     .schema-years{
-      max-width:640px;
-      margin:10px auto 0 auto;
+      max-width:680px;
+      margin:14px auto 0 auto;
       display:grid;
-      gap:12px;
+      grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+      gap:14px;
+      width:100%;
     }
     .schema-year-card{
-      background:#fff;
-      border:1px solid rgba(30,104,120,.15);
-      border-radius:8px;
-      padding:14px 18px;
+      position:relative;
+      background:linear-gradient(160deg,#ffffff,rgba(42,138,154,.04));
+      border:1px solid rgba(30,104,120,.14);
+      border-top:3px solid var(--dore3,#a8842e);
+      border-radius:10px;
+      padding:18px 18px 16px 18px;
       text-align:left;
+      box-shadow:0 3px 12px rgba(30,104,120,.07);
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .schema-year-card:hover{
+      transform:translateY(-3px);
+      box-shadow:0 10px 22px rgba(30,104,120,.15);
+    }
+    .schema-year-badge{
+      width:34px; height:34px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      background:linear-gradient(135deg,var(--teal2),var(--teal));
+      color:#fff; font-family:'Cormorant Garamond',serif; font-weight:700; font-size:1rem;
+      margin-bottom:10px;
+      box-shadow:0 3px 10px rgba(30,104,120,.28);
     }
     .schema-year-card h5{
       font-family:'Cormorant Garamond',serif;
-      font-size:1rem;
+      font-size:1.05rem;
       font-weight:700;
-      color:var(--teal2);
-      margin:0 0 6px 0;
+      color:var(--noir2,#1a1a1a);
+      margin:0 0 8px 0;
     }
     .schema-year-card p{
-      font-size:.82rem;
+      font-size:.85rem;
       color:var(--txm);
       line-height:1.6;
       margin:0;
+      font-weight:600;
     }
     .schema-year-card ul{
-      font-size:.82rem;
+      font-size:.8rem;
       color:var(--txm);
-      line-height:1.7;
+      line-height:1.65;
       margin:0;
-      padding-left:18px;
+      padding-left:16px;
+    }
+    .schema-year-card ul li{
+      margin-bottom:4px;
+    }
+    .schema-year-card ul li::marker{
+      color:var(--dore3,#a8842e);
+    }
+    .schema-years-label{
+      text-align:center;
+      font-family:'Jost',sans-serif;
+      font-size:.68rem;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--dore3,#a8842e);
+      font-weight:600;
+      margin:14px 0 0 0;
+    }
+    @media (max-width:768px){
+      .parcours-schema{ width:100%; max-width:100%; padding:0 4px; overflow:visible; }
+      .schema-node, .schema-fork, .schema-branch, .schema-card, .schema-fork-branches{
+        width:100% !important; max-width:100% !important;
+      }
+      .schema-fork-branches{ flex-direction:column !important; gap:28px !important; }
+      .schema-years{ grid-template-columns:1fr !important; max-width:100%; }
     }
 
     /* ── Bannière d'inscription (popup) ── */
@@ -301,12 +344,15 @@
               <div class="schema-sub">Bases solides et essentielles</div>
               <div class="schema-duration">2 ans</div>
             </div>
+            <p class="schema-years-label">Détail par année</p>
             <div class="schema-years">
               <div class="schema-year-card">
+                <div class="schema-year-badge">1</div>
                 <h5>Année 1</h5>
                 <p>Qaïdah Nourania</p>
               </div>
               <div class="schema-year-card">
+                <div class="schema-year-badge">2</div>
                 <h5>Année 2</h5>
                 <p>Juz'Amma</p>
               </div>
@@ -323,8 +369,10 @@
               <div class="schema-sub">Compréhension et maîtrise — Tajwid</div>
               <div class="schema-duration">3 ans</div>
             </div>
+            <p class="schema-years-label">Détail par année</p>
             <div class="schema-years">
               <div class="schema-year-card">
+                <div class="schema-year-badge">1</div>
                 <h5>Année 1</h5>
                 <ul>
                   <li>Les règles de Tajwid</li>
@@ -338,6 +386,7 @@
                 </ul>
               </div>
               <div class="schema-year-card">
+                <div class="schema-year-badge">2</div>
                 <h5>Année 2</h5>
                 <ul>
                   <li>Sifāt - moutadāddah / ghair moutadāddah</li>
@@ -348,6 +397,7 @@
                 </ul>
               </div>
               <div class="schema-year-card">
+                <div class="schema-year-badge">3</div>
                 <h5>Année 3</h5>
                 <ul>
                   <li>Approfondissement complet des mudūd</li>
