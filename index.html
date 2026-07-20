@@ -54,6 +54,40 @@
       .sr-card{ padding:20px; }
     }
 
+    .schema-years{
+      max-width:640px;
+      margin:10px auto 0 auto;
+      display:grid;
+      gap:12px;
+    }
+    .schema-year-card{
+      background:#fff;
+      border:1px solid rgba(30,104,120,.15);
+      border-radius:8px;
+      padding:14px 18px;
+      text-align:left;
+    }
+    .schema-year-card h5{
+      font-family:'Cormorant Garamond',serif;
+      font-size:1rem;
+      font-weight:700;
+      color:var(--teal2);
+      margin:0 0 6px 0;
+    }
+    .schema-year-card p{
+      font-size:.82rem;
+      color:var(--txm);
+      line-height:1.6;
+      margin:0;
+    }
+    .schema-year-card ul{
+      font-size:.82rem;
+      color:var(--txm);
+      line-height:1.7;
+      margin:0;
+      padding-left:18px;
+    }
+
     /* ── Bannière d'inscription (popup) ── */
     .insc-overlay{
       position:fixed; inset:0; z-index:9999;
@@ -126,7 +160,8 @@
     <img src="logo1.png" alt="Baytoul Ilm" class="insc-logo">
     <p class="insc-eyebrow">Année scolaire 2026 / 2027</p>
     <h3 class="insc-title">Inscriptions ouvertes</h3>
-    <p class="insc-dates">Du 1er Août au 28 Septembre</p>
+    <p class="insc-dates">Du 1er Août au 30 Août</p>
+    <p style="font-family:'Jost',sans-serif;font-size:.8rem;color:var(--txm,#666);margin:-14px 0 20px 0">Pré-rentrée le 5 septembre</p>
     <div class="insc-depts">
       <div class="insc-dept" onclick="goToInscription()">
         <span class="insc-dept-icon">📖</span>
@@ -266,6 +301,16 @@
               <div class="schema-sub">Bases solides et essentielles</div>
               <div class="schema-duration">2 ans</div>
             </div>
+            <div class="schema-years">
+              <div class="schema-year-card">
+                <h5>Année 1</h5>
+                <p>Qaïdah Nourania</p>
+              </div>
+              <div class="schema-year-card">
+                <h5>Année 2</h5>
+                <p>Juz'Amma</p>
+              </div>
+            </div>
           </div>
 
           <div class="schema-arrow">▼</div>
@@ -275,8 +320,42 @@
             <div class="schema-card schema-card--teal">
               <div class="schema-step">Étape 2</div>
               <div class="schema-title">Approfondissement</div>
-              <div class="schema-sub">Compréhension et maîtrise</div>
+              <div class="schema-sub">Compréhension et maîtrise — Tajwid</div>
               <div class="schema-duration">3 ans</div>
+            </div>
+            <div class="schema-years">
+              <div class="schema-year-card">
+                <h5>Année 1</h5>
+                <ul>
+                  <li>Les règles de Tajwid</li>
+                  <li>Définition, but et vertus du Tadjwid</li>
+                  <li>Les erreurs mineures et majeures</li>
+                  <li>Les règles de l'isti'āzah et bismillah</li>
+                  <li>L'alphabet arabe</li>
+                  <li>Termes à savoir</li>
+                  <li>Makhārij</li>
+                  <li>Sifāt</li>
+                </ul>
+              </div>
+              <div class="schema-year-card">
+                <h5>Année 2</h5>
+                <ul>
+                  <li>Sifāt - moutadāddah / ghair moutadāddah</li>
+                  <li>Sifātoul-āridhah</li>
+                  <li>Règles spécifiques des lettres</li>
+                  <li>Les ādābs du Qour'āne Karîm</li>
+                  <li>Introduction au mad</li>
+                </ul>
+              </div>
+              <div class="schema-year-card">
+                <h5>Année 3</h5>
+                <ul>
+                  <li>Approfondissement complet des mudūd</li>
+                  <li>Waqf — selon contexte</li>
+                  <li>Saktah</li>
+                  <li>Règles complémentaires</li>
+                </ul>
+              </div>
             </div>
           </div>
 
