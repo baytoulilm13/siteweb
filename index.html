@@ -129,7 +129,6 @@
       margin:14px 0 0 0;
     }
 
-    /* ── Toggle "Détail par année" / méthodologie ── */
     .schema-toggle-btn{
       margin-top:14px;
       display:inline-flex;
@@ -192,7 +191,6 @@
       .schema-years{ grid-template-columns:1fr !important; max-width:100%; }
     }
 
-    /* ── Bannière d'inscription (popup) ── */
     .insc-overlay{
       position:fixed; inset:0; z-index:9999;
       background:rgba(10,20,22,.55);
@@ -257,7 +255,6 @@
 </head>
 <body>
 
-<!-- ══════════════════════ POPUP INSCRIPTION ══════════════════════ -->
 <div class="insc-overlay" id="insc-overlay">
   <div class="insc-box">
     <button class="insc-close" id="insc-close" aria-label="Fermer">✕</button>
@@ -309,7 +306,6 @@
   </div>
 </header>
 
-<!-- ══════════════════════ PAGE ACCUEIL ══════════════════════ -->
 <div id="page-home" class="page active">
 
   <div class="hero">
@@ -339,7 +335,6 @@
     </div>
   </div>
 
-  <!-- PILLARS -->
   <div class="wrap">
     <div class="sec">
       <div class="slbl">Notre mission</div>
@@ -369,7 +364,6 @@
     </div>
   </div>
 
-  <!-- CTA BAND -->
   <div class="cta-band">
     <div class="slbl" style="justify-content:center;color:var(--dore3)">Rejoignez-nous</div>
     <h2 class="stitle" style="color:#fff;margin-bottom:16px">Inscrivez votre enfant à <em>Baytoul Ilm</em></h2>
@@ -378,14 +372,12 @@
   </div>
 </div>
 
-<!-- ══════════════════════ PAGE PROGRAMME ══════════════════════ -->
 <div id="page-programme" class="page">
   <div class="wrap prog-wrap">
     <div class="slbl">Curriculum</div>
     <h2 class="stitle">Programme <em>2026 / 2027</em></h2>
     <p class="sdesc" style="margin-bottom:48px">5 à 18 ans, répartis en deux départements complémentaires.</p>
 
-    <!-- DÉPARTEMENT CORAN -->
     <div class="accordion">
       <div class="acc-head" onclick="toggleAcc('coran')">
         <h3>📖 &nbsp; Département du Coran</h3>
@@ -393,10 +385,8 @@
       </div>
       <div class="acc-body" id="body-coran">
 
-        <!-- SCHÉMA VISUEL -->
         <div class="parcours-schema">
 
-          <!-- INITIATION -->
           <div class="schema-node">
             <div class="schema-card schema-card--teal">
               <div class="schema-step">Étape 1</div>
@@ -427,7 +417,6 @@
 
           <div class="schema-arrow">▼</div>
 
-          <!-- APPROFONDISSEMENT -->
           <div class="schema-node">
             <div class="schema-card schema-card--teal">
               <div class="schema-step">Étape 2</div>
@@ -483,12 +472,10 @@
 
           <div class="schema-arrow">▼</div>
 
-          <!-- BIFURCATION -->
           <div class="schema-fork">
             <div class="schema-fork-line"></div>
             <div class="schema-fork-branches">
 
-              <!-- BRANCHE HIFDH -->
               <div class="schema-branch">
                 <div class="schema-arrow">▼</div>
                 <div class="schema-card schema-card--teal schema-card--parcours">
@@ -514,7 +501,6 @@
                 </div>
               </div>
 
-              <!-- BRANCHE ITQÂN -->
               <div class="schema-branch">
                 <div class="schema-arrow">▼</div>
                 <div class="schema-card schema-card--teal schema-card--parcours">
@@ -530,7 +516,7 @@
                   </button>
                   <div class="schema-details" id="details-perfectionnement">
                     <div class="schema-details-inner">
-                      <p class="schema-methodo-text">Ce programme vise l'excellence de la lecture sur texte grâce à la maîtrise précise des points d'articulation (Makharij) et des règles de Tajwid. Il combine correction individuelle, gestion du souffle et automatisation des réflexes de lecture à livre ouvert. L'élève gagne en fluidité, en assurance et en régularité, transformant un simple déchiffrement en une récitation harmonieuse.</p>
+                      <p class="schema-methodo-text">Ce programme vise l'excellence de la lecture sur texte grâce à la maîtrise précise des points d'articulation (Makharij) et des règles de Tajwid. Il combine correction individuelle, gestion du souffle et automatisation des réflexes de lecture à livre ouvert. L'élève gagne en fluidité, en assurance et en régularité, transformant une simple déchiffrement en une récitation harmonieuse.</p>
                     </div>
                   </div>
                 </div>
@@ -548,7 +534,6 @@
       </div>
     </div>
 
-    <!-- DÉPARTEMENT SCIENCES RELIGIEUSES -->
     <div class="accordion">
       <div class="acc-head" onclick="toggleAcc('science')">
         <h3>🕌 &nbsp; Département de Science Religieuse</h3>
@@ -649,7 +634,6 @@
   </div>
 </div>
 
-<!-- ══════════════════════ PAGE INSCRIPTION ══════════════════════ -->
 <div id="page-inscription" class="page">
   <div class="wrap" style="padding:56px 40px">
     <div class="slbl">Rejoignez-nous</div>
@@ -746,7 +730,6 @@
   </div>
 </div>
 
-<!-- ══════════════════════ PAGE DONS ══════════════════════ -->
 <div id="page-dons" class="page">
   <div class="wrap" style="padding:56px 40px">
     <div class="slbl">Soutenir l'Institut</div>
@@ -769,7 +752,6 @@
   </div>
 </div>
 
-<!-- ══════════════════════ PAGE RÉGLEMENT ══════════════════════ -->
 <div id="page-reglement" class="page">
   <div class="wrap" style="padding:56px 40px">
     <div class="slbl">Cadre de fonctionnement</div>
@@ -824,7 +806,6 @@
   </div>
 </div>
 
-<!-- ══════════════════════ PAGE CONTACT ══════════════════════ -->
 <div id="page-contact" class="page">
   <div class="wrap" style="padding:56px 40px">
     <div class="slbl">Nous joindre</div>
@@ -854,7 +835,6 @@
   </div>
 </div>
 
-<!-- ══════════════════════ FOOTER ══════════════════════ -->
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
@@ -881,7 +861,6 @@
   </div>
 </footer>
 
-<!-- MODALES -->
 <div class="mov" id="modal-privacy">
   <div class="mbox">
     <div class="mhdr"><h3>Politique de confidentialité</h3><button class="mcls" onclick="closeM('privacy')">✕</button></div>
