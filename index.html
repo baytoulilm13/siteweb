@@ -169,12 +169,58 @@
     .schema-details-inner{
       padding-top:4px;
     }
+
+    /* ── Alignement strict Prépa Hifdh / Perfectionnement ── */
+    .schema-fork-branches{
+      display:flex;
+      justify-content:center;
+      align-items:stretch;
+      gap:40px;
+    }
+    .schema-branch{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      width:260px;
+      flex:0 0 260px;
+    }
+    .schema-card{
+      box-sizing:border-box;
+    }
+    .schema-card--light{
+      width:260px;
+      min-height:140px;
+      box-sizing:border-box;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
+      text-align:center;
+      overflow:hidden;
+    }
+    .schema-card--light .schema-title{
+      width:100%;
+    }
+    .schema-card--light .schema-sub{
+      width:100%;
+    }
+    .schema-card--light .schema-toggle-btn{
+      width:100%;
+      box-sizing:border-box;
+      justify-content:center;
+      margin-top:auto;
+    }
+    .schema-card--light .schema-details{
+      width:100%;
+    }
     .schema-methodo-text{
       font-size:.85rem;
       color:var(--txm);
       line-height:1.85;
       text-align:left;
-      max-width:280px;
+      width:100%;
+      box-sizing:border-box;
+      max-width:none;
       margin:12px auto 0 auto;
       padding:14px 16px;
       background:rgba(30,104,120,.04);
@@ -182,47 +228,12 @@
       border-left:3px solid var(--dore3,#a8842e);
     }
 
-    /* ── Alignement égal Prépa Hifdh / Perfectionnement ── */
-    .schema-branch{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      width:100%;
-      max-width:260px;
-    }
-    .schema-card{
-      width:100%;
-      box-sizing:border-box;
-    }
-    .schema-card--light{
-      width:100%;
-      max-width:260px;
-      box-sizing:border-box;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      text-align:center;
-    }
-    .schema-card--light .schema-toggle-btn{
-      width:100%;
-      box-sizing:border-box;
-      justify-content:center;
-    }
-    .schema-card--light .schema-details{
-      width:100%;
-    }
-    .schema-fork-branches{
-      display:flex;
-      justify-content:center;
-      align-items:flex-start;
-      gap:40px;
-    }
-
     @media (max-width:768px){
       .parcours-schema{ width:100%; max-width:100%; padding:0 4px; overflow:visible; }
       .schema-node, .schema-fork, .schema-branch, .schema-card, .schema-fork-branches{
-        width:100% !important; max-width:100% !important;
+        width:100% !important; max-width:100% !important; flex:none !important;
       }
+      .schema-card--light{ width:100% !important; }
       .schema-fork-branches{ flex-direction:column !important; gap:28px !important; }
       .schema-years{ grid-template-columns:1fr !important; max-width:100%; }
     }
