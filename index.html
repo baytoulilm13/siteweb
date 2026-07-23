@@ -182,6 +182,42 @@
       border-left:3px solid var(--dore3,#a8842e);
     }
 
+    /* ── Alignement égal Prépa Hifdh / Perfectionnement ── */
+    .schema-branch{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      width:100%;
+      max-width:260px;
+    }
+    .schema-card{
+      width:100%;
+      box-sizing:border-box;
+    }
+    .schema-card--light{
+      width:100%;
+      max-width:260px;
+      box-sizing:border-box;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+    }
+    .schema-card--light .schema-toggle-btn{
+      width:100%;
+      box-sizing:border-box;
+      justify-content:center;
+    }
+    .schema-card--light .schema-details{
+      width:100%;
+    }
+    .schema-fork-branches{
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      gap:40px;
+    }
+
     @media (max-width:768px){
       .parcours-schema{ width:100%; max-width:100%; padding:0 4px; overflow:visible; }
       .schema-node, .schema-fork, .schema-branch, .schema-card, .schema-fork-branches{
