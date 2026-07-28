@@ -170,6 +170,24 @@
       padding-top:4px;
     }
 
+    /* ── Note conditions d'admission (Département Coran) ── */
+    .schema-condition-note{
+      max-width:680px;
+      margin:0 auto 32px auto;
+      text-align:center;
+      background:rgba(30,104,120,.05);
+      border:1px solid rgba(30,104,120,.15);
+      border-radius:8px;
+      padding:16px 20px;
+    }
+    .schema-condition-note p{
+      font-size:.85rem;
+      color:var(--txm);
+      line-height:1.7;
+      margin:0;
+      font-style:italic;
+    }
+
     /* ── Alignement strict Prépa Hifdh / Perfectionnement ── */
     .schema-fork-branches{
       display:flex;
@@ -226,6 +244,21 @@
       background:rgba(30,104,120,.04);
       border-radius:8px;
       border-left:3px solid var(--dore3,#a8842e);
+    }
+
+    /* ── Variante contraste : texte déplié sur carte teal foncée (ex. Classe Hifdh) ── */
+    .schema-card--teal .schema-toggle-btn{
+      background:rgba(255,255,255,.12);
+      border-color:rgba(255,255,255,.4);
+      color:#fff;
+    }
+    .schema-card--teal .schema-toggle-btn:hover{
+      background:rgba(255,255,255,.22);
+    }
+    .schema-card--teal .schema-methodo-text{
+      background:rgba(255,255,255,.12);
+      border-left:3px solid var(--dore3,#a8842e);
+      color:rgba(255,255,255,.92);
     }
 
     @media (max-width:768px){
@@ -297,6 +330,13 @@
     @media (max-width:480px){
       .insc-box{ padding:32px 20px 24px; }
       .insc-depts{ flex-direction:column; }
+    }
+
+    /* ── Mention tranche d'âge sous frais d'inscription ── */
+    .insc-age-range{
+      font-weight:600;
+      color:var(--noir2,#1a1a1a);
+      margin-bottom:12px !important;
     }
   </style>
 </head>
@@ -434,6 +474,10 @@
 
         <div class="parcours-schema">
 
+          <div class="schema-condition-note">
+            <p>Les élèves sont évalués avant leur intégration et placés dans la classe correspondant à leur niveau.</p>
+          </div>
+
           <div class="schema-node">
             <div class="schema-card schema-card--teal">
               <div class="schema-step">Étape 1</div>
@@ -545,6 +589,14 @@
                 <div class="schema-card schema-card--teal">
                   <div class="schema-title">Classe Hifdh</div>
                   <div class="schema-sub">Mémorisation du Coran</div>
+                  <button type="button" class="schema-toggle-btn" id="toggle-classe-hifdh" onclick="toggleSchemaDetails(this,'details-classe-hifdh')">
+                    <span>En savoir plus</span><span class="arrow">▾</span>
+                  </button>
+                  <div class="schema-details" id="details-classe-hifdh">
+                    <div class="schema-details-inner">
+                      <p class="schema-methodo-text">Cette classe est réservée à la mémorisation du Coran. Chaque élève apprend à son propre rythme : il n'y a pas d'année ni de mois précis imposé pour terminer la mémorisation.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -688,6 +740,7 @@
     <p class="sdesc">Remplissez le formulaire ci-dessous pour inscrire votre enfant à Baytoul Ilm.</p>
     <div class="payment-notice payment-notice-top">
       <h4>Frais d'inscription annuels</h4>
+      <p class="insc-age-range">Cours ouverts aux enfants de 5 à 18 ans.</p>
       <p>Departement Coran : 240 EUR par enfant, ou 20 EUR par mois pendant 12 mois.</p>
       <p>Departement Science religieuse : 360 EUR par enfant, ou 30 EUR par mois pendant 12 mois.</p>
       <p>Le paiement mensuel engage la famille sur l'annee complete.</p>
