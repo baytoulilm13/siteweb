@@ -246,7 +246,7 @@
       border-left:3px solid var(--dore3,#a8842e);
     }
 
-    /* ── Variante contraste : texte déplié sur carte teal foncée (ex. Classe Hifdh) ── */
+    /* ── Variante contraste : texte déplié sur carte teal foncée (ex. Classe Hifdh, Maîtrise avancée) ── */
     .schema-card--teal .schema-toggle-btn{
       background:rgba(255,255,255,.12);
       border-color:rgba(255,255,255,.4);
@@ -332,7 +332,6 @@
       .insc-depts{ flex-direction:column; }
     }
 
-    /* ── Mention tranche d'âge sous frais d'inscription ── */
     .insc-age-range{
       font-weight:600;
       color:var(--noir2,#1a1a1a);
@@ -594,7 +593,7 @@
                   </button>
                   <div class="schema-details" id="details-classe-hifdh">
                     <div class="schema-details-inner">
-                      <p class="schema-methodo-text">Cette classe est réservée à la mémorisation du Coran. Chaque élève apprend à son propre rythme : il n'y a pas d'année ni de mois précis imposé pour terminer la mémorisation.</p>
+                      <p class="schema-methodo-text">Cette classe est réservée à la mémorisation du Coran. Chaque élève apprend à son propre rythme : il n'y a pas d'année ni de mois précis imposé pour terminer la mémorisation complète du Coran.</p>
                     </div>
                   </div>
                 </div>
@@ -622,6 +621,14 @@
                 <div class="schema-arrow">▼</div>
                 <div class="schema-card schema-card--teal">
                   <div class="schema-title">Maîtrise avancée</div>
+                  <button type="button" class="schema-toggle-btn" id="toggle-maitrise-avancee" onclick="toggleSchemaDetails(this,'details-maitrise-avancee')">
+                    <span>En savoir plus</span><span class="arrow">▾</span>
+                  </button>
+                  <div class="schema-details" id="details-maitrise-avancee">
+                    <div class="schema-details-inner">
+                      <p class="schema-methodo-text">Dans cette classe, les élèves découvrent les qirâ'ât, c'est-à-dire les différentes lectures canoniques du Coran transmises depuis les compagnons du Prophète, chacune ayant ses propres règles de prononciation et de récitation.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
