@@ -246,7 +246,7 @@
       border-left:3px solid var(--dore3,#a8842e);
     }
 
-    /* ── Variante contraste : texte déplié sur carte teal foncée (ex. Classe Hifdh, Maîtrise avancée) ── */
+    /* ── Variante contraste : texte déplié sur carte teal foncée ── */
     .schema-card--teal .schema-toggle-btn{
       background:rgba(255,255,255,.12);
       border-color:rgba(255,255,255,.4);
@@ -261,12 +261,40 @@
       color:rgba(255,255,255,.92);
     }
 
+    /* ── Alignement strict Classe Hifdh / Maîtrise avancée ── */
+    .schema-card--twin{
+      width:260px;
+      min-height:110px;
+      box-sizing:border-box;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
+      text-align:center;
+      overflow:hidden;
+    }
+    .schema-card--twin .schema-title{
+      width:100%;
+    }
+    .schema-card--twin .schema-sub{
+      width:100%;
+    }
+    .schema-card--twin .schema-toggle-btn{
+      width:100%;
+      box-sizing:border-box;
+      justify-content:center;
+      margin-top:auto;
+    }
+    .schema-card--twin .schema-details{
+      width:100%;
+    }
+
     @media (max-width:768px){
       .parcours-schema{ width:100%; max-width:100%; padding:0 4px; overflow:visible; }
       .schema-node, .schema-fork, .schema-branch, .schema-card, .schema-fork-branches{
         width:100% !important; max-width:100% !important; flex:none !important;
       }
-      .schema-card--light{ width:100% !important; }
+      .schema-card--light, .schema-card--twin{ width:100% !important; }
       .schema-fork-branches{ flex-direction:column !important; gap:28px !important; }
       .schema-years{ grid-template-columns:1fr !important; max-width:100%; }
     }
@@ -585,7 +613,7 @@
                   </div>
                 </div>
                 <div class="schema-arrow">▼</div>
-                <div class="schema-card schema-card--teal">
+                <div class="schema-card schema-card--teal schema-card--twin">
                   <div class="schema-title">Classe Hifdh</div>
                   <div class="schema-sub">Mémorisation du Coran</div>
                   <button type="button" class="schema-toggle-btn" id="toggle-classe-hifdh" onclick="toggleSchemaDetails(this,'details-classe-hifdh')">
@@ -619,7 +647,7 @@
                   </div>
                 </div>
                 <div class="schema-arrow">▼</div>
-                <div class="schema-card schema-card--teal">
+                <div class="schema-card schema-card--teal schema-card--twin">
                   <div class="schema-title">Maîtrise avancée</div>
                   <button type="button" class="schema-toggle-btn" id="toggle-maitrise-avancee" onclick="toggleSchemaDetails(this,'details-maitrise-avancee')">
                     <span>En savoir plus</span><span class="arrow">▾</span>
