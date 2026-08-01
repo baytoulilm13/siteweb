@@ -188,6 +188,18 @@
       font-style:italic;
     }
 
+    /* ── Note prérequis à l'intérieur d'un détail par année ── */
+    .schema-prereq-note{
+      font-size:.85rem;
+      color:var(--txm);
+      font-style:italic;
+      text-align:center;
+      margin:0 0 18px 0;
+      padding:10px 16px;
+      background:rgba(30,104,120,.05);
+      border-radius:8px;
+    }
+
     /* ── Alignement strict Prépa Hifdh / Perfectionnement ── */
     .schema-fork-branches{
       display:flex;
@@ -509,7 +521,7 @@
             <div class="schema-card schema-card--teal">
               <div class="schema-step">Étape 1</div>
               <div class="schema-title">Initiation</div>
-              <div class="schema-sub">Bases solides et essentielles</div>
+              <div class="schema-sub">Bases solides et essentielles (Apprentissage des lettres)</div>
               <div class="schema-duration">2 ans</div>
             </div>
             <button type="button" class="schema-toggle-btn" id="toggle-initiation" onclick="toggleSchemaDetails(this,'details-initiation')">
@@ -539,7 +551,7 @@
             <div class="schema-card schema-card--teal">
               <div class="schema-step">Étape 2</div>
               <div class="schema-title">Approfondissement</div>
-              <div class="schema-sub">Compréhension et maîtrise — Tajwid</div>
+              <div class="schema-sub">Compréhension et maîtrise — Tajwid (élèves qui débutent dans le mushaf)</div>
               <div class="schema-duration">3 ans</div>
             </div>
             <button type="button" class="schema-toggle-btn" id="toggle-approfondissement" onclick="toggleSchemaDetails(this,'details-approfondissement')">
@@ -547,6 +559,7 @@
             </button>
             <div class="schema-details" id="details-approfondissement">
               <div class="schema-details-inner">
+                <p class="schema-prereq-note">Pour intégrer cette classe, il est nécessaire de connaître les lettres.</p>
                 <div class="schema-years">
                   <div class="schema-year-card">
                     <div class="schema-year-badge">1</div>
@@ -643,7 +656,7 @@
                   </button>
                   <div class="schema-details" id="details-perfectionnement">
                     <div class="schema-details-inner">
-                      <p class="schema-methodo-text">Ce programme vise l'excellence de la lecture sur texte grâce à la maîtrise précise des points d'articulation (Makharij) et des règles de Tajwid. Il combine correction individuelle, gestion du souffle et automatisation des réflexes de lecture à livre ouvert. L'élève gagne en fluidité, en assurance et en régularité, transformant une simple déchiffrement en une récitation harmonieuse.</p>
+                      <p class="schema-methodo-text">Ce programme vise l'excellence de la lecture sur texte grâce à la maîtrise précise des points d'articulation (Makharij) et des règles de Tajwid. Il combine correction individuelle, gestion du souffle et automatisation des réflexes de lecture à livre ouvert. L'élève gagne en fluidité, en assurance et en régularité, transformant un simple déchiffrement en une récitation harmonieuse.</p>
                     </div>
                   </div>
                 </div>
@@ -777,6 +790,7 @@
     <p class="sdesc">Remplissez le formulaire ci-dessous pour inscrire votre enfant à Baytoul Ilm.</p>
     <div class="payment-notice payment-notice-top">
       <h4>Frais d'inscription annuels</h4>
+      <p class="insc-age-range">Les inscriptions débutent du 1er au 30 Août.</p>
       <p class="insc-age-range">Cours ouverts aux enfants de 5 à 18 ans.</p>
       <p>Departement Coran : 240 EUR par enfant, ou 20 EUR par mois pendant 12 mois.</p>
       <p>Departement Science religieuse : 360 EUR par enfant, ou 30 EUR par mois pendant 12 mois.</p>
@@ -904,7 +918,7 @@
       <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">Pour participer aux cours, il est obligatoire d'inscrire votre enfant. Il est également nécessaire de signaler toute absence dès qu'elle survient. Les absences répétées et non justifiées peuvent entraîner l'exclusion de votre enfant. En cas de 3 absences injustifiées, l'enfant sera exclu définitivement de l'établissement.</p>
 
       <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Restriction d'inscription par département</h3>
-      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">Une personne inscrite dans un département ne peut pas s'inscrire simultanément dans un même département ailleurs. Chaque inscription est unique et exclusive à un seul établissement par niveau de cours.</p>
+      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">Une personne inscrite dans un département ne peut pas s'inscrire simultanément dans un même département ailleurs. Chaque inscription est unique et exclusive à un seul établissement par niveau de cours. Une personne inscrite dans notre institut ne peut pas s'inscrire dans un autre institut ailleurs (madrassah, école coranique, etc.). Si nous apprenons qu'un élève s'est inscrit ailleurs sans nous en avoir informés au préalable, cela entraînera son exclusion définitive de l'institut.</p>
 
       <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Tenue et matériel</h3>
       <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">Votre enfant doit porter une tenue correcte et adaptée à l'apprentissage religieux. Il doit également apporter son matériel (Coran, cahier, stylo, etc.) à chaque cours.</p>
