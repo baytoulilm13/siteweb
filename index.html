@@ -301,6 +301,19 @@
       width:100%;
     }
 
+    /* ── Alignement strict Parcours Hifdh / Parcours Qirâa ── */
+    .schema-card--parcours{
+      width:260px;
+      min-height:80px;
+      box-sizing:border-box;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      overflow:hidden;
+    }
+
     @media (max-width:768px){
       .parcours-schema{ width:100%; max-width:100%; padding:0 4px; overflow:visible; }
       .schema-node, .schema-fork, .schema-branch, .schema-card, .schema-fork-branches{
@@ -656,7 +669,7 @@
                 <div class="schema-arrow">▼</div>
                 <div class="schema-card schema-card--teal schema-card--parcours">
                   <div class="schema-parcours-label">Parcours Qirâa</div>
-                  <div class="schema-parcours-desc">Voie de la maîtrise des différents types de lecture</div>
+                  <div class="schema-parcours-desc">Voie de la maîtrise de la lecture</div>
                 </div>
                 <div class="schema-arrow">▼</div>
                 <div class="schema-card schema-card--light">
@@ -715,7 +728,9 @@
               <li>Savoir lire le Coran avec Tajwid, avant toute chose.</li>
               <li>Être impliqué dans le suivi des cours et capable de prendre des notes.</li>
               <li>Présence obligatoire, ponctualité et régularité exigées.</li>
-              <li>Âge : de 15 à 20 ans maximum. Des élèves plus jeunes peuvent toutefois être admis s'ils démontrent les capacités nécessaires pour suivre les cours.</li>
+              <li>Âge : 15 ans ou plus.</li>
+              <li>Savoir parler et comprendre le français.</li>
+              <li>Au bout de 3 absences injustifiées, des mesures pourront être prises.</li>
             </ul>
           </div>
 
@@ -799,10 +814,11 @@
     <div class="slbl">Rejoignez-nous</div>
     <h2 class="stitle">Inscription <em>2026 / 2027</em></h2>
     <p class="sdesc">Remplissez le formulaire ci-dessous pour inscrire votre enfant à Baytoul Ilm.</p>
+    <p class="insc-age-range">Les inscriptions débutent du 1er au 30 Août.</p>
+    <p class="insc-age-range">Cours ouverts aux enfants de 5 à 18 ans.</p>
+    <p class="insc-age-range">Les personnes qui s'inscrivent en ligne doivent apporter le document imprimé ou sous format numérique le jour de la pré-rentrée.</p>
     <div class="payment-notice payment-notice-top">
       <h4>Frais d'inscription annuels</h4>
-      <p class="insc-age-range">Les inscriptions débutent du 1er au 30 Août.</p>
-      <p class="insc-age-range">Cours ouverts aux enfants de 5 à 18 ans.</p>
       <p>Departement Coran : 240 EUR par enfant, ou 20 EUR par mois pendant 12 mois.</p>
       <p>Departement Science religieuse : 360 EUR par enfant, ou 30 EUR par mois pendant 12 mois.</p>
       <p>Le paiement mensuel engage la famille sur l'annee complete.</p>
@@ -1139,8 +1155,8 @@ function buildMonthSelect(selected){
 }
 function buildYearSelect(selected){
   const currentYear=new Date().getFullYear();
-  const maxYear=currentYear-3;
-  const minYear=currentYear-20;
+  const maxYear=currentYear+5;
+  const minYear=currentYear-60;
   let opts='<option value="">Année</option>';
   for(let y=maxYear;y>=minYear;y--){
     opts+=`<option value="${y}"${selected===String(y)?' selected':''}>${y}</option>`;
