@@ -377,6 +377,17 @@
       color:var(--noir2,#1a1a1a);
       margin-bottom:12px !important;
     }
+
+    /* ── Sélecteur de date de naissance (jour / mois / année) ── */
+    .date-select-group{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .date-select-group select{
+      flex:1;
+      min-width:80px;
+    }
   </style>
 </head>
 <body>
@@ -644,8 +655,8 @@
               <div class="schema-branch">
                 <div class="schema-arrow">▼</div>
                 <div class="schema-card schema-card--teal schema-card--parcours">
-                  <div class="schema-parcours-label">Parcours Itqân</div>
-                  <div class="schema-parcours-desc">Voie de la maîtrise et de l'excellence</div>
+                  <div class="schema-parcours-label">Parcours Qirâa</div>
+                  <div class="schema-parcours-desc">Voie de la maîtrise des différents types de lecture</div>
                 </div>
                 <div class="schema-arrow">▼</div>
                 <div class="schema-card schema-card--light">
@@ -1108,6 +1119,35 @@ const INSCRIPTION_CONFIG={
 const EMPTY_DOCX_MARKER='__BAYTOULILM_EMPTY_FIELD__';
 const MAX_CHILDREN=5;
 let childCount=0;
+
+function buildDaySelect(selected){
+  let opts='<option value="">Jour</option>';
+  for(let d=1;d<=31;d++){
+    const v=String(d).padStart(2,'0');
+    opts+=`<option value="${v}"${selected===v?' selected':''}>${d}</option>`;
+  }
+  return opts;
+}
+const MONTHS_FR=['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+function buildMonthSelect(selected){
+  let opts='<option value="">Mois</option>';
+  MONTHS_FR.forEach((name,idx)=>{
+    const v=String(idx+1).padStart(2,'0');
+    opts+=`<option value="${v}"${selected===v?' selected':''}>${name}</option>`;
+  });
+  return opts;
+}
+function buildYearSelect(selected){
+  const currentYear=new Date().getFullYear();
+  const maxYear=currentYear-3;
+  const minYear=currentYear-20;
+  let opts='<option value="">Année</option>';
+  for(let y=maxYear;y>=minYear;y--){
+    opts+=`<option value="${y}"${selected===String(y)?' selected':''}>${y}</option>`;
+  }
+  return opts;
+}
+
 function addChild(data={}){
   const existing=document.querySelectorAll('.child-card').length;
   if(existing>=MAX_CHILDREN){
@@ -1128,14 +1168,20 @@ function addChild(data={}){
     <div class="form-grid">
       <label>Nom de l'enfant<input name="enfant_nom" value="${escapeAttr(data.nom||'')}" required></label>
       <label>Prenom de l'enfant<input name="enfant_prenom" value="${escapeAttr(data.prenom||'')}" required></label>
-      <label>Date de naissance<input name="date_naissance" type="date" value="${escapeAttr(data.date_naissance||'')}" required></label>
+      <label>Date de naissance
+        <div class="date-select-group">
+          <select name="dob_jour" required>${buildDaySelect('')}</select>
+          <select name="dob_mois" required>${buildMonthSelect('')}</select>
+          <select name="dob_annee" required>${buildYearSelect('')}</select>
+        </div>
+      </label>
       <label>Niveau demande
         <select name="niveau_demande" required>
           <option value="">Selectionner</option>
           <option${data.niveau_demande==='Classe Initiation'?' selected':''}>Classe Initiation</option>
           <option${data.niveau_demande==='Classe Approfondissement'?' selected':''}>Classe Approfondissement</option>
           <option${data.niveau_demande==='Parcours Hifdh'?' selected':''}>Parcours Hifdh</option>
-          <option${data.niveau_demande==='Parcours Itqan'?' selected':''}>Parcours Itqan</option>
+          <option${data.niveau_demande==='Parcours Qirâa'?' selected':''}>Parcours Qirâa</option>
         </select>
       </label>
       <label>Departement
@@ -1182,7 +1228,7 @@ function collectInscriptionData(form){
   const enfants=[...document.querySelectorAll('.child-card')].map(card=>({
     nom:card.querySelector('[name="enfant_nom"]').value.trim(),
     prenom:card.querySelector('[name="enfant_prenom"]').value.trim(),
-    date_naissance:card.querySelector('[name="date_naissance"]').value,
+    date_naissance:`${card.querySelector('[name="dob_annee"]').value}-${card.querySelector('[name="dob_mois"]').value}-${card.querySelector('[name="dob_jour"]').value}`,
     niveau_demande:card.querySelector('[name="niveau_demande"]').value.trim(),
     departement:card.querySelector('[name="departement"]').value,
   }));
