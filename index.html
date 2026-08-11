@@ -301,19 +301,6 @@
       width:100%;
     }
 
-    /* ── Alignement strict Parcours Hifdh / Parcours Qirâa ── */
-    .schema-card--parcours{
-      width:260px;
-      min-height:80px;
-      box-sizing:border-box;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      overflow:hidden;
-    }
-
     @media (max-width:768px){
       .parcours-schema{ width:100%; max-width:100%; padding:0 4px; overflow:visible; }
       .schema-node, .schema-fork, .schema-branch, .schema-card, .schema-fork-branches{
@@ -400,6 +387,14 @@
     .date-select-group select{
       flex:1;
       min-width:80px;
+    }
+
+    /* ── Département Sciences Religieuses : masqué par défaut, révélé via #admin-sciences ── */
+    #dept-science{
+      display:none;
+    }
+    #dept-science.reveal{
+      display:block;
     }
   </style>
 </head>
@@ -669,7 +664,7 @@
                 <div class="schema-arrow">▼</div>
                 <div class="schema-card schema-card--teal schema-card--parcours">
                   <div class="schema-parcours-label">Parcours Qirâa</div>
-                  <div class="schema-parcours-desc">Voie de la maîtrise de la lecture</div>
+                  <div class="schema-parcours-desc">Voie de la maîtrise des différents types de lecture</div>
                 </div>
                 <div class="schema-arrow">▼</div>
                 <div class="schema-card schema-card--light">
@@ -707,7 +702,7 @@
       </div>
     </div>
 
-    <div class="accordion">
+    <div class="accordion" id="dept-science">
       <div class="acc-head" onclick="toggleAcc('science')">
         <h3>🕌 &nbsp; Département de Science Religieuse</h3>
         <span class="acc-icon" id="icon-science">▾</span>
@@ -728,9 +723,7 @@
               <li>Savoir lire le Coran avec Tajwid, avant toute chose.</li>
               <li>Être impliqué dans le suivi des cours et capable de prendre des notes.</li>
               <li>Présence obligatoire, ponctualité et régularité exigées.</li>
-              <li>Âge : 15 ans ou plus.</li>
-              <li>Savoir parler et comprendre le français.</li>
-              <li>Au bout de 3 absences injustifiées, des mesures pourront être prises.</li>
+              <li>Âge : de 15 à 20 ans maximum. Des élèves plus jeunes peuvent toutefois être admis s'ils démontrent les capacités nécessaires pour suivre les cours.</li>
             </ul>
           </div>
 
@@ -814,11 +807,10 @@
     <div class="slbl">Rejoignez-nous</div>
     <h2 class="stitle">Inscription <em>2026 / 2027</em></h2>
     <p class="sdesc">Remplissez le formulaire ci-dessous pour inscrire votre enfant à Baytoul Ilm.</p>
-    <p class="insc-age-range">Les inscriptions débutent du 1er au 30 Août.</p>
-    <p class="insc-age-range">Cours ouverts aux enfants de 5 à 18 ans ; pour le département du Coran et le département des sciences religieuses, 15 ans ou plus.</p>
-    <p class="insc-age-range"> Le jour de la prérentrée, les inscrits en ligne doivent présenter leur document (imprimé ou numérique) et s'acquitter des 10 € de frais de dossier.  .</p>
     <div class="payment-notice payment-notice-top">
       <h4>Frais d'inscription annuels</h4>
+      <p class="insc-age-range">Les inscriptions débutent du 1er au 30 Août.</p>
+      <p class="insc-age-range">Département du Coran : cours ouverts aux enfants de 5 à 18 ans.</p>
       <p>Departement Coran : 240 EUR par enfant, ou 20 EUR par mois pendant 12 mois.</p>
       <p>Departement Science religieuse : 360 EUR par enfant, ou 30 EUR par mois pendant 12 mois.</p>
       <p>Le paiement mensuel engage la famille sur l'annee complete.</p>
@@ -944,14 +936,14 @@
       <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Inscription et présence</h3>
       <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">Pour participer aux cours, il est obligatoire d'inscrire votre enfant. Il est également nécessaire de signaler toute absence dès qu'elle survient. Les absences répétées et non justifiées peuvent entraîner l'exclusion de votre enfant. En cas de 3 absences injustifiées, l'enfant sera exclu définitivement de l'établissement.</p>
 
-      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Restriction d'inscription</h3>
-      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px"> Une personne inscrite dans notre institut ne peut pas s'inscrire dans un autre étbalissement (madrassah, école coranique, etc.). Si nous apprenons qu'un élève s'est inscrit ailleurs sans nous en avoir informés au préalable, cela entraînera son exclusion définitive de l'institut.</p>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Restriction d'inscription par département</h3>
+      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">Une personne inscrite dans un département ne peut pas s'inscrire simultanément dans un même département ailleurs. Chaque inscription est unique et exclusive à un seul établissement par niveau de cours. Une personne inscrite dans notre institut ne peut pas s'inscrire dans un autre institut ailleurs (madrassah, école coranique, etc.). Si nous apprenons qu'un élève s'est inscrit ailleurs sans nous en avoir informés au préalable, cela entraînera son exclusion définitive de l'institut.</p>
 
       <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Tenue et matériel</h3>
       <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">Votre enfant doit porter une tenue correcte et adaptée à l'apprentissage religieux. Il doit également apporter son matériel (Coran, cahier, stylo, etc.) à chaque cours.</p>
 
       <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Sécurité et responsabilité</h3>
-      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">L'association est responsable uniquement à l'intérieur des locaux et durant les horaires de cours. En cas de retards répétés, des mesures peuvent être prises. Pour les problèmes de santé, en urgence grave, les secours sont contactés en priorité puis les parents informés. En urgence non vitale, les parents sont contactés pour décider de la conduite à tenir.</p>
+      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">L'institut est responsable uniquement à l'intérieur des locaux et durant les horaires de cours. En cas de retards répétés, des mesures peuvent être prises. Pour les problèmes de santé, en urgence grave, les secours sont contactés en priorité puis les parents informés. En urgence non vitale, les parents sont contactés pour décider de la conduite à tenir.</p>
 
       <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Comportement et discipline</h3>
       <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">Votre enfant doit respecter les autres et le cadre d'apprentissage. Tout manquement suit la procédure de sanction.</p>
@@ -960,13 +952,13 @@
       <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">Votre enfant doit respecter les locaux et le matériel. En cas de dégradations volontaires, une réparation ou un remboursement peut être demandé.</p>
 
       <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Communication avec les familles</h3>
-      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">L'association communiquera via WhatsApp, SMS, appel et affichage. Merci de fournir des coordonnées à jour et de prévenir l'association en cas de changement.</p>
+      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">L'institut communiquera via WhatsApp, SMS, appel et affichage. Merci de fournir des coordonnées à jour et de prévenir l'institut en cas de changement.</p>
 
       <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Vos engagements</h3>
-      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">La participation aux réunions, événements et Majlis est attendue. Votre implication est essentielle au bon fonctionnement de l'association.</p>
+      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">La participation aux réunions, événements et Majlis est attendue. Votre implication est essentielle au bon fonctionnement de l'institut.</p>
 
       <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Cotisations et remboursement</h3>
-      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">Les cotisations financent le fonctionnement de l'association. Elles sont non remboursables, même en cas d'abandon, d'exclusion ou de départ volontaire.</p>
+      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">Les cotisations financent le fonctionnement de l'institut. Elles sont non remboursables, même en cas d'abandon, d'exclusion ou de départ volontaire.</p>
 
       <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Procédure de sanction</h3>
       <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:16px">Tout manquement aux règles (assiduité, discipline, tenue, matériel, sécurité, respect des locaux) suit la procédure suivante :</p>
@@ -974,7 +966,7 @@
         <li style="margin-bottom:8px">Rappel oral à l'enfant</li>
         <li style="margin-bottom:8px">Information aux parents</li>
         <li style="margin-bottom:8px">Exclusion temporaire de l'enfant</li>
-        <li>Exclusion définitive décidée par le bureau de l'association, sans remboursement des cotisations</li>
+        <li>Exclusion définitive décidée par le bureau de l'institut, sans remboursement des cotisations</li>
       </ol>
 
       <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Procédure générale pour tout manquement</h3>
@@ -1087,7 +1079,10 @@ function openPageFromHash(){
   const id=location.hash.replace('#','');
   if(validPages.includes(id)) goPage(id);
 }
-window.addEventListener('hashchange',openPageFromHash);
+window.addEventListener('hashchange',()=>{
+  openPageFromHash();
+  checkAdminReveal();
+});
 function goPageM(id){goPage(id);document.getElementById('mobile-menu').style.display='none';}
 function toggleMenu(){
   const m=document.getElementById('mobile-menu');
@@ -1109,6 +1104,15 @@ function toggleSchemaDetails(btn,id){
 function openM(id){const m=document.getElementById('modal-'+id);if(m)m.classList.add('open');}
 function closeM(id){const m=document.getElementById('modal-'+id);if(m)m.classList.remove('open');}
 document.querySelectorAll('.mov').forEach(m=>{m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');});});
+
+function checkAdminReveal(){
+  const dept=document.getElementById('dept-science');
+  if(!dept)return;
+  if(location.hash.replace('#','')==='admin-sciences'){
+    dept.classList.add('reveal');
+    goPage('programme');
+  }
+}
 
 function handleContactSubmit(event){
   event.preventDefault();
@@ -1155,8 +1159,8 @@ function buildMonthSelect(selected){
 }
 function buildYearSelect(selected){
   const currentYear=new Date().getFullYear();
-  const maxYear=currentYear+5;
-  const minYear=currentYear-60;
+  const maxYear=currentYear-3;
+  const minYear=currentYear-20;
   let opts='<option value="">Année</option>';
   for(let y=maxYear;y>=minYear;y--){
     opts+=`<option value="${y}"${selected===String(y)?' selected':''}>${y}</option>`;
@@ -1205,7 +1209,6 @@ function addChild(data={}){
           <option value="">Selectionner</option>
           <option>Coran</option>
           <option>Science religieuse</option>
-          <option>Coran et science religieuse</option>
         </select>
       </label>
     </div>`;
@@ -1387,6 +1390,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const form=document.getElementById('inscription-form');
   if(form)form.addEventListener('submit',handleInscriptionSubmit);
   openPageFromHash();
+  checkAdminReveal();
   initInscriptionPopup();
 });
 
