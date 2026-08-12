@@ -811,6 +811,7 @@
       <h4>Frais d'inscription annuels</h4>
       <p class="insc-age-range">Les inscriptions débutent du 1er au 30 Août.</p>
       <p class="insc-age-range">Département du Coran : cours ouverts aux enfants de 5 à 18 ans.</p>
+      <p>Les personnes inscrites en ligne doivent obligatoirement apporter le document imprimé comme preuve de leur inscription.</p>
       <p>Departement Coran : 240 EUR par enfant, ou 20 EUR par mois pendant 12 mois.</p>
       <p>Departement Science religieuse : 360 EUR par enfant, ou 30 EUR par mois pendant 12 mois.</p>
       <p>Le paiement mensuel engage la famille sur l'annee complete.</p>
@@ -887,6 +888,42 @@
             <label><input type="checkbox" name="autorisation_image" value="oui"> J'autorise l'utilisation interne de photos dans le cadre des activites de l'institut.</label>
             <label><input type="checkbox" name="accept_privacy" value="oui" required> J'accepte la transmission des informations a l'administration de Baytoul Ilm.</label>
             <label><input type="checkbox" name="signature_electronique" value="oui" required> Je certifie exactes les informations renseignees et j'accepte que cette validation vaille signature electronique du dossier d'inscription.</label>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title"><span>5</span><h4>Règlement intérieur et signature</h4></div>
+          <p style="font-size:.85rem;color:var(--txm);margin-bottom:14px">Veuillez lire attentivement le règlement ci-dessous, puis signer dans le cadre prévu.</p>
+
+          <div id="reglement-scroll" style="max-height:260px;overflow-y:auto;border:1px solid var(--bd);border-radius:6px;padding:18px 20px;background:#fafafa;font-size:.82rem;line-height:1.75;color:var(--txm);margin-bottom:20px">
+            <p><strong>Cadre et objectifs</strong><br>Le présent règlement fixe les règles de fonctionnement des cours de Coran organisés par l'Institut Baytoul Ilm. En inscrivant votre enfant, vous vous engagez à respecter ces règles et à veiller à ce que votre enfant en fasse de même.</p>
+            <p><strong>Inscription et présence</strong><br>Pour participer aux cours, il est obligatoire d'inscrire votre enfant. Il est également nécessaire de signaler toute absence dès qu'elle survient. Les absences répétées et non justifiées peuvent entraîner l'exclusion de votre enfant. En cas de 3 absences injustifiées, l'enfant sera exclu définitivement de l'institut.</p>
+            <p><strong>Restriction d'inscription</strong><br>Une personne inscrite dans notre institut ne peut pas s'inscrire dans un autre établissement (madrassah, école coranique, etc.). Si nous apprenons qu'un élève s'est inscrit ailleurs sans nous en avoir informés au préalable, cela entraînera son exclusion définitive de l'institut.</p>
+            <p><strong>Tenue et matériel</strong><br>Votre enfant doit porter une tenue correcte et adaptée à l'apprentissage religieux. Il doit également apporter son matériel (Coran, cahier, stylo, etc.) à chaque cours.</p>
+            <p><strong>Sécurité et responsabilité</strong><br>L'institut est responsable uniquement à l'intérieur des locaux et durant les horaires de cours. En cas de retards répétés, des mesures peuvent être prises. Pour les problèmes de santé, en urgence grave, les secours sont contactés en priorité puis les parents informés. En urgence non vitale, les parents sont contactés pour décider de la conduite à tenir.</p>
+            <p><strong>Comportement et discipline</strong><br>Votre enfant doit respecter les autres et le cadre d'apprentissage. Tout manquement suit la procédure de sanction.</p>
+            <p><strong>Respect des lieux</strong><br>Votre enfant doit respecter les locaux et le matériel. En cas de dégradations volontaires, une réparation ou un remboursement peut être demandé.</p>
+            <p><strong>Communication avec les familles</strong><br>L'institut communiquera via WhatsApp, SMS, appel et affichage. Merci de fournir des coordonnées à jour et de prévenir l'institut en cas de changement.</p>
+            <p><strong>Vos engagements</strong><br>La participation aux réunions, événements et Majlis est attendue. Votre implication est essentielle au bon fonctionnement de l'institut.</p>
+            <p><strong>Cotisations et remboursement</strong><br>Les cotisations financent le fonctionnement de l'institut. Elles sont non remboursables, même en cas d'abandon, d'exclusion ou de départ volontaire.</p>
+            <p><strong>Procédure de sanction</strong><br>Tout manquement aux règles (assiduité, discipline, tenue, matériel, sécurité, respect des locaux) suit la procédure suivante : rappel oral à l'enfant, information aux parents, exclusion temporaire de l'enfant, exclusion définitive décidée par le bureau de l'institut, sans remboursement des cotisations.</p>
+            <p><strong>Procédure générale pour tout manquement</strong><br>Toute infraction au règlement (inscription, présence, discipline, matériel, respect des locaux, sécurité, communication) sera traitée selon la procédure de sanction décrite ci-dessus.</p>
+          </div>
+
+          <label style="display:flex;align-items:center;gap:8px;font-size:.85rem;margin-bottom:20px">
+            <input type="checkbox" id="reglement-lu" required>
+            J'ai lu et j'accepte le règlement intérieur ci-dessus.
+          </label>
+
+          <div class="signature-block">
+            <p style="font-size:.85rem;font-weight:600;color:var(--noir2,#1a1a1a);margin-bottom:8px">Signature du responsable légal</p>
+            <div style="border:1px solid var(--bd);border-radius:6px;background:#fff;display:inline-block">
+              <canvas id="signature-pad" width="400" height="150" style="touch-action:none;cursor:crosshair;display:block"></canvas>
+            </div>
+            <div style="margin-top:8px">
+              <button type="button" class="btn-small" id="signature-clear">Effacer la signature</button>
+            </div>
+            <p id="signature-status" style="font-size:.78rem;color:#b23b3b;margin-top:6px"></p>
           </div>
         </div>
 
@@ -1136,9 +1173,93 @@ const INSCRIPTION_CONFIG={
   appsScriptUrl:'https://script.google.com/macros/s/AKfycbxyGj-8j4iDGommuIB--CTzWk3qAfJxu6MX5G8PXhVV2JriHALfPzAgK2gPvKym060eBg/exec'
 };
 
+const SIGNATURE_CONFIG={
+  scriptUrl:'https://script.google.com/macros/s/AKfycbze5Qhsk1087R-Iq-6OVTo9jc0UIgvm_oV-XZ_fyEAmjyTKSMs26hfezIw5WhFVl8Zbyg/exec'
+};
+
 const EMPTY_DOCX_MARKER='__BAYTOULILM_EMPTY_FIELD__';
 const MAX_CHILDREN=5;
 let childCount=0;
+
+let sigCanvas, sigCtx, sigDrawing=false, sigHasDrawn=false;
+
+function initSignaturePad(){
+  sigCanvas=document.getElementById('signature-pad');
+  if(!sigCanvas)return;
+  sigCtx=sigCanvas.getContext('2d');
+  sigCtx.strokeStyle='#1a1a1a';
+  sigCtx.lineWidth=2;
+  sigCtx.lineCap='round';
+  sigCtx.lineJoin='round';
+
+  function getPos(e){
+    const rect=sigCanvas.getBoundingClientRect();
+    const scaleX=sigCanvas.width/rect.width;
+    const scaleY=sigCanvas.height/rect.height;
+    const point=e.touches?e.touches[0]:e;
+    return {x:(point.clientX-rect.left)*scaleX,y:(point.clientY-rect.top)*scaleY};
+  }
+  function start(e){
+    e.preventDefault();
+    sigDrawing=true;
+    sigHasDrawn=true;
+    const p=getPos(e);
+    sigCtx.beginPath();
+    sigCtx.moveTo(p.x,p.y);
+  }
+  function move(e){
+    if(!sigDrawing)return;
+    e.preventDefault();
+    const p=getPos(e);
+    sigCtx.lineTo(p.x,p.y);
+    sigCtx.stroke();
+  }
+  function end(e){
+    if(e)e.preventDefault();
+    sigDrawing=false;
+  }
+
+  sigCanvas.addEventListener('mousedown',start);
+  sigCanvas.addEventListener('mousemove',move);
+  sigCanvas.addEventListener('mouseup',end);
+  sigCanvas.addEventListener('mouseleave',end);
+  sigCanvas.addEventListener('touchstart',start,{passive:false});
+  sigCanvas.addEventListener('touchmove',move,{passive:false});
+  sigCanvas.addEventListener('touchend',end);
+
+  const clearBtn=document.getElementById('signature-clear');
+  if(clearBtn){
+    clearBtn.addEventListener('click',()=>{
+      sigCtx.clearRect(0,0,sigCanvas.width,sigCanvas.height);
+      sigHasDrawn=false;
+    });
+  }
+}
+
+function getSignatureDataUrl(){
+  if(!sigCanvas||!sigHasDrawn)return null;
+  return sigCanvas.toDataURL('image/png');
+}
+
+async function sendSignatureToScript(data){
+  if(!SIGNATURE_CONFIG.scriptUrl||SIGNATURE_CONFIG.scriptUrl.includes('COLLE_ICI'))return 'skip';
+  const signatureImage=getSignatureDataUrl();
+  const payload={
+    parent_nom:data.parent_nom,
+    parent_prenom:data.parent_prenom,
+    email:data.email,
+    telephone:data.telephone,
+    enfants_texte:data.enfants_texte,
+    signature_image:signatureImage
+  };
+  await fetch(SIGNATURE_CONFIG.scriptUrl,{
+    method:'POST',
+    mode:'no-cors',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body:JSON.stringify(payload)
+  });
+  return 'sent';
+}
 
 function buildDaySelect(selected){
   let opts='<option value="">Jour</option>';
@@ -1369,6 +1490,15 @@ async function handleInscriptionSubmit(event){
     setInscriptionStatus('Ajoutez au moins un enfant.', 'error');
     return;
   }
+  const reglementLu=document.getElementById('reglement-lu');
+  if(reglementLu && !reglementLu.checked){
+    setInscriptionStatus('Veuillez cocher la case confirmant la lecture du règlement.', 'error');
+    return;
+  }
+  if(!sigHasDrawn){
+    setInscriptionStatus('Veuillez signer dans le cadre prévu avant de continuer.', 'error');
+    return;
+  }
   const submit=form.querySelector('[type="submit"]');
   submit.disabled=true;
   setInscriptionStatus('Generation du dossier en cours...');
@@ -1377,6 +1507,7 @@ async function handleInscriptionSubmit(event){
     const blob=await generateDocx(data);
     downloadBlob(blob,data);
     const sheetStatus=await sendToSheet(data);
+    await sendSignatureToScript(data);
     setInscriptionStatus(sheetStatus==='sent'?'Votre dossier a ete genere et vos informations ont ete transmises.':'Votre dossier a ete genere. Configurez l URL Apps Script pour activer l envoi Google Sheet.','success');
   }catch(error){
     console.error(error);
@@ -1392,6 +1523,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   openPageFromHash();
   checkAdminReveal();
   initInscriptionPopup();
+  initSignaturePad();
 });
 
 function initInscriptionPopup(){
