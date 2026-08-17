@@ -1261,6 +1261,64 @@ async function sendSignatureToScript(data){
   return 'sent';
 }
 
+function cleanOptional(value){
+  return value===EMPTY_DOCX_MARKER?'':value;
+}
+
+function buildDossierPayload(data){
+  return {
+    submitted_at:data.submitted_at,
+    parent_type:data.parent_type,
+    parent_nom:data.parent_nom,
+    parent_prenom:data.parent_prenom,
+    adresse:data.adresse,
+    code_postal:data.code_postal,
+    ville:data.ville,
+    telephone:data.telephone,
+    email:data.email,
+    parent2_type:cleanOptional(data.parent2_type),
+    parent2_nom:cleanOptional(data.parent2_nom),
+    parent2_prenom:cleanOptional(data.parent2_prenom),
+    parent2_adresse:cleanOptional(data.parent2_adresse),
+    parent2_code_postal:cleanOptional(data.parent2_code_postal),
+    parent2_ville:cleanOptional(data.parent2_ville),
+    parent2_telephone:cleanOptional(data.parent2_telephone),
+    parent2_email:cleanOptional(data.parent2_email),
+    remarque_médicale:cleanOptional(data['remarque_médicale']),
+    autorisation_sortie:data.autorisation_sortie,
+    autorisation_image:data.autorisation_image,
+    accept_privacy:data.accept_privacy,
+    signature_electronique:data.signature_electronique,
+    signature_nom:data.signature_nom,
+    date_signature:data.date_signature,
+    signature_timestamp:data.signature_timestamp,
+    enfants:data.enfants,
+    signature_image:getSignatureDataUrl()
+  };
+}
+
+async function sendDossierToScript(payload){
+  const response=await fetch(SIGNATURE_CONFIG.scriptUrl,{
+    method:'POST',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body:JSON.stringify(payload)
+  });
+  return response.json();
+}
+
+function showDossierLinks(downloads){
+  const link=document.getElementById('download-link');
+  if(!link||!downloads)return;
+  const target=downloads.dossierPdf||downloads.dossierWord;
+  if(!target)return;
+  link.href=target;
+  link.removeAttribute('download');
+  link.target='_blank';
+  link.rel='noopener';
+  link.classList.add('show');
+  link.textContent='Voir le dossier genere';
+}
+
 function buildDaySelect(selected){
   let opts='<option value="">Jour</option>';
   for(let d=1;d<=31;d++){
@@ -1503,11 +1561,14 @@ async function handleInscriptionSubmit(event){
   setInscriptionStatus('Generation du dossier en cours...');
   try{
     const data=collectInscriptionData(form);
-    const blob=await generateDocx(data);
-    downloadBlob(blob,data);
-    const sheetStatus=await sendToSheet(data);
-    await sendSignatureToScript(data);
-    setInscriptionStatus(sheetStatus==='sent'?'Votre dossier a ete genere et vos informations ont ete transmises.':'Votre dossier a ete genere. Configurez l URL Apps Script pour activer l envoi Google Sheet.','success');
+    const payload=buildDossierPayload(data);
+    const result=await sendDossierToScript(payload);
+    if(result && result.ok){
+      showDossierLinks(result.downloads);
+      setInscriptionStatus('Votre dossier et le reglement signe ont ete generes et envoyes par email.','success');
+    }else{
+      throw new Error((result && result.error) || 'Le serveur a renvoye une erreur inconnue.');
+    }
   }catch(error){
     console.error(error);
     setInscriptionStatus(error.message||'Une erreur est survenue pendant la generation du dossier.','error');
