@@ -397,6 +397,22 @@
       display:block;
     }
   </style>
+
+<style id="baytoul-ilm-modifications-final">
+/* Modifications demandées — structure originale conservée */
+.form-head, .form-section-title { border-color: #00a6a6; }
+.form-section-title h4, .form-head-text h3, .stitle em { color: #00a6a6; }
+.form-head-icon, .form-section-title span { background:#00a6a6 !important; }
+/* En-tête de l'inscription : turquoise/blanc, sans modifier la structure */
+#page-inscription .stitle { color:#00a6a6; }
+#page-inscription .form-head { background:#fff; }
+#page-inscription .form-badge { background:#00a6a6; color:#fff; }
+@media (max-width:700px){
+  #page-inscription .wrap { padding-left:18px !important; padding-right:18px !important; }
+  #page-inscription .form-head { gap:10px; }
+}
+</style>
+
 </head>
 <body>
 
@@ -1397,9 +1413,9 @@ function collectInscriptionData(form){
     signature_nom:`${fieldValue(form,'parent_prenom')} ${fieldValue(form,'parent_nom')}`.trim(),
     date_signature:formatSignatureDate(signatureDate),
     signature_timestamp:signatureDate.toISOString(),
-    check_autorisation_sortie:checkedBox(form,'autorisation_sortie'),
-    check_autorisation_image:checkedBox(form,'autorisation_image'),
-    check_accept_privacy:checkedBox(form,'accept_privacy'),
+    autorisation_sortie:checkedBox(form,'autorisation_sortie'),
+    autorisation_image:checkedBox(form,'autorisation_image'),
+    accept_privacy:checkedBox(form,'accept_privacy'),
     enfants,
     enfants_texte:enfants.map((e,i)=>`${i+1}. ${e.nom} ${e.prenom} - ${e.date_naissance} - ${e.niveau_demande}`).join('\n')
   };
