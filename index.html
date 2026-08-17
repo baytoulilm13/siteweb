@@ -219,7 +219,7 @@
     }
     .schema-card--light{
       width:260px;
-      min-height:140px;
+      height:158px;
       box-sizing:border-box;
       display:flex;
       flex-direction:column;
@@ -276,7 +276,7 @@
     /* ── Alignement strict Classe Hifdh / Maîtrise avancée ── */
     .schema-card--twin{
       width:260px;
-      min-height:130px;
+      height:148px;
       box-sizing:border-box;
       display:flex;
       flex-direction:column;
@@ -397,22 +397,6 @@
       display:block;
     }
   </style>
-
-<style id="baytoul-ilm-modifications-final">
-/* Modifications demandées — structure originale conservée */
-.form-head, .form-section-title { border-color: #00a6a6; }
-.form-section-title h4, .form-head-text h3, .stitle em { color: #00a6a6; }
-.form-head-icon, .form-section-title span { background:#00a6a6 !important; }
-/* En-tête de l'inscription : turquoise/blanc, sans modifier la structure */
-#page-inscription .stitle { color:#00a6a6; }
-#page-inscription .form-head { background:#fff; }
-#page-inscription .form-badge { background:#00a6a6; color:#fff; }
-@media (max-width:700px){
-  #page-inscription .wrap { padding-left:18px !important; padding-right:18px !important; }
-  #page-inscription .form-head { gap:10px; }
-}
-</style>
-
 </head>
 <body>
 
@@ -537,7 +521,7 @@
   <div class="wrap prog-wrap">
     <div class="slbl">Curriculum</div>
     <h2 class="stitle">Programme <em>2026 / 2027</em></h2>
-    <p class="sdesc" style="margin-bottom:48px">5 à 18 ans, répartis en deux départements complémentaires.</p>
+    <p class="sdesc" style="margin-bottom:48px">5 à 18 ans, un parcours complet au sein du Département du Coran.</p>
 
     <div class="accordion">
       <div class="acc-head" onclick="toggleAcc('coran')">
@@ -1190,7 +1174,7 @@ const INSCRIPTION_CONFIG={
 };
 
 const SIGNATURE_CONFIG={
-  scriptUrl:'https://script.google.com/macros/s/AKfycbze5Qhsk1087R-Iq-6OVTo9jc0UIgvm_oV-XZ_fyEAmjyTKSMs26hfezIw5WhFVl8Zbyg/exec'
+  scriptUrl:'https://script.google.com/macros/s/AKfycbyaI9N3V34TTJ6ipBOC6yF2y4nxWyRXGz4MYeKhogu5MfnTRXMTFiGOCyU4xNIgIEseUA/exec'
 };
 
 const EMPTY_DOCX_MARKER='__BAYTOULILM_EMPTY_FIELD__';
@@ -1413,9 +1397,9 @@ function collectInscriptionData(form){
     signature_nom:`${fieldValue(form,'parent_prenom')} ${fieldValue(form,'parent_nom')}`.trim(),
     date_signature:formatSignatureDate(signatureDate),
     signature_timestamp:signatureDate.toISOString(),
-    autorisation_sortie:checkedBox(form,'autorisation_sortie'),
-    autorisation_image:checkedBox(form,'autorisation_image'),
-    accept_privacy:checkedBox(form,'accept_privacy'),
+    check_autorisation_sortie:checkedBox(form,'autorisation_sortie'),
+    check_autorisation_image:checkedBox(form,'autorisation_image'),
+    check_accept_privacy:checkedBox(form,'accept_privacy'),
     enfants,
     enfants_texte:enfants.map((e,i)=>`${i+1}. ${e.nom} ${e.prenom} - ${e.date_naissance} - ${e.niveau_demande}`).join('\n')
   };
