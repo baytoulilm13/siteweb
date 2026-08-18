@@ -219,7 +219,7 @@
     }
     .schema-card--light{
       width:260px;
-      min-height:140px;
+      height:158px;
       box-sizing:border-box;
       display:flex;
       flex-direction:column;
@@ -276,7 +276,7 @@
     /* ── Alignement strict Classe Hifdh / Maîtrise avancée ── */
     .schema-card--twin{
       width:260px;
-      min-height:130px;
+      height:148px;
       box-sizing:border-box;
       display:flex;
       flex-direction:column;
@@ -521,7 +521,7 @@
   <div class="wrap prog-wrap">
     <div class="slbl">Curriculum</div>
     <h2 class="stitle">Programme <em>2026 / 2027</em></h2>
-    <p class="sdesc" style="margin-bottom:48px">5 à 18 ans, répartis en deux départements complémentaires.</p>
+    <p class="sdesc" style="margin-bottom:48px">5 à 18 ans, un parcours complet au sein du Département du Coran.</p>
 
     <div class="accordion">
       <div class="acc-head" onclick="toggleAcc('coran')">
@@ -1169,16 +1169,13 @@ function handleContactSubmit(event){
 }
 
 const INSCRIPTION_CONFIG={
-  // Le document Word reste généré côté navigateur, comme dans ton ancien système.
-  // Le fichier doit exister à ce chemin relatif dans ton dépôt/site.
   templateUrl:'travail/teamplate_inscription.docx',
-  // Nouveau déploiement Apps Script unique pour l'enregistrement des données.
-  appsScriptUrl:'https://script.google.com/macros/s/AKfycbyaI9N3V34TTJ6ipBOC6yF2y4nxWyRXGz4MYeKhogu5MfnTRXMTFiGOCyU4xNIgIEseUA/exec'
+  appsScriptUrl:'https://script.google.com/macros/s/AKfycbxyGj-8j4iDGommuIB--CTzWk3qAfJxu6MX5G8PXhVV2JriHALfPzAgK2gPvKym060eBg/exec'
 };
 
-// La signature est envoyée dans le même payload que l'inscription.
-// Aucun second envoi n'est effectué afin d'éviter les doublons.
-const SIGNATURE_CONFIG={scriptUrl:INSCRIPTION_CONFIG.appsScriptUrl};
+const SIGNATURE_CONFIG={
+  scriptUrl:'https://script.google.com/macros/s/AKfycbyaI9N3V34TTJ6ipBOC6yF2y4nxWyRXGz4MYeKhogu5MfnTRXMTFiGOCyU4xNIgIEseUA/exec'
+};
 
 const EMPTY_DOCX_MARKER='__BAYTOULILM_EMPTY_FIELD__';
 const MAX_CHILDREN=5;
@@ -1245,8 +1242,81 @@ function getSignatureDataUrl(){
 }
 
 async function sendSignatureToScript(data){
-  // La signature est déjà incluse dans le payload envoyé par sendToSheet().
-  return 'included';
+  if(!SIGNATURE_CONFIG.scriptUrl||SIGNATURE_CONFIG.scriptUrl.includes('COLLE_ICI'))return 'skip';
+  const signatureImage=getSignatureDataUrl();
+  const payload={
+    parent_nom:data.parent_nom,
+    parent_prenom:data.parent_prenom,
+    email:data.email,
+    telephone:data.telephone,
+    enfants_texte:data.enfants_texte,
+    signature_image:signatureImage
+  };
+  await fetch(SIGNATURE_CONFIG.scriptUrl,{
+    method:'POST',
+    mode:'no-cors',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body:JSON.stringify(payload)
+  });
+  return 'sent';
+}
+
+function cleanOptional(value){
+  return value===EMPTY_DOCX_MARKER?'':value;
+}
+
+function buildDossierPayload(data){
+  return {
+    submitted_at:data.submitted_at,
+    parent_type:data.parent_type,
+    parent_nom:data.parent_nom,
+    parent_prenom:data.parent_prenom,
+    adresse:data.adresse,
+    code_postal:data.code_postal,
+    ville:data.ville,
+    telephone:data.telephone,
+    email:data.email,
+    parent2_type:cleanOptional(data.parent2_type),
+    parent2_nom:cleanOptional(data.parent2_nom),
+    parent2_prenom:cleanOptional(data.parent2_prenom),
+    parent2_adresse:cleanOptional(data.parent2_adresse),
+    parent2_code_postal:cleanOptional(data.parent2_code_postal),
+    parent2_ville:cleanOptional(data.parent2_ville),
+    parent2_telephone:cleanOptional(data.parent2_telephone),
+    parent2_email:cleanOptional(data.parent2_email),
+    remarque_médicale:cleanOptional(data['remarque_médicale']),
+    autorisation_sortie:data.autorisation_sortie,
+    autorisation_image:data.autorisation_image,
+    accept_privacy:data.accept_privacy,
+    signature_electronique:data.signature_electronique,
+    signature_nom:data.signature_nom,
+    date_signature:data.date_signature,
+    signature_timestamp:data.signature_timestamp,
+    enfants:data.enfants,
+    signature_image:getSignatureDataUrl()
+  };
+}
+
+async function sendDossierToScript(payload){
+  const response=await fetch(SIGNATURE_CONFIG.scriptUrl,{
+    method:'POST',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body:JSON.stringify(payload)
+  });
+  return response.json();
+}
+
+function showDossierLinks(downloads){
+  const link=document.getElementById('download-link');
+  if(!link||!downloads)return;
+  const target=downloads.dossierPdf||downloads.dossierWord;
+  if(!target)return;
+  link.href=target;
+  link.removeAttribute('download');
+  link.target='_blank';
+  link.rel='noopener';
+  link.classList.add('show');
+  link.textContent='Voir le dossier genere';
 }
 
 function buildDaySelect(selected){
@@ -1369,15 +1439,15 @@ function collectInscriptionData(form){
     ville:fieldValue(form,'ville'),
     telephone:fieldValue(form,'telephone'),
     email:fieldValue(form,'email'),
-    parent2_type:fieldValue(form,'parent2_type'),
-    parent2_nom:fieldValue(form,'parent2_nom'),
-    parent2_prenom:fieldValue(form,'parent2_prenom'),
-    parent2_adresse:fieldValue(form,'parent2_adresse'),
-    parent2_code_postal:fieldValue(form,'parent2_code_postal'),
-    parent2_ville:fieldValue(form,'parent2_ville'),
-    parent2_telephone:fieldValue(form,'parent2_telephone'),
-    parent2_email:fieldValue(form,'parent2_email'),
-    remarque_médicale:fieldValue(form,'remarque_médicale'),
+    parent2_type:optionalDocxValue(fieldValue(form,'parent2_type')),
+    parent2_nom:optionalDocxValue(fieldValue(form,'parent2_nom')),
+    parent2_prenom:optionalDocxValue(fieldValue(form,'parent2_prenom')),
+    parent2_adresse:optionalDocxValue(fieldValue(form,'parent2_adresse')),
+    parent2_code_postal:optionalDocxValue(fieldValue(form,'parent2_code_postal')),
+    parent2_ville:optionalDocxValue(fieldValue(form,'parent2_ville')),
+    parent2_telephone:optionalDocxValue(fieldValue(form,'parent2_telephone')),
+    parent2_email:optionalDocxValue(fieldValue(form,'parent2_email')),
+    remarque_médicale:optionalDocxValue(fieldValue(form,'remarque_médicale')),
     autorisation_sortie:checkedValue(form,'autorisation_sortie'),
     autorisation_image:checkedValue(form,'autorisation_image'),
     accept_privacy:checkedValue(form,'accept_privacy'),
@@ -1388,7 +1458,6 @@ function collectInscriptionData(form){
     check_autorisation_sortie:checkedBox(form,'autorisation_sortie'),
     check_autorisation_image:checkedBox(form,'autorisation_image'),
     check_accept_privacy:checkedBox(form,'accept_privacy'),
-    signature_image:getSignatureDataUrl(),
     enfants,
     enfants_texte:enfants.map((e,i)=>`${i+1}. ${e.nom} ${e.prenom} - ${e.date_naissance} - ${e.niveau_demande}`).join('\n')
   };
@@ -1492,10 +1561,14 @@ async function handleInscriptionSubmit(event){
   setInscriptionStatus('Generation du dossier en cours...');
   try{
     const data=collectInscriptionData(form);
-    const blob=await generateDocx(data);
-    downloadBlob(blob,data);
-    const sheetStatus=await sendToSheet(data);
-    setInscriptionStatus(sheetStatus==='sent'?'Votre dossier Word a ete genere et vos informations, y compris la signature, ont ete transmises.':'Votre dossier a ete genere. Configurez l URL Apps Script pour activer l envoi Google Sheet.','success');
+    const payload=buildDossierPayload(data);
+    const result=await sendDossierToScript(payload);
+    if(result && result.ok){
+      showDossierLinks(result.downloads);
+      setInscriptionStatus('Votre dossier et le reglement signe ont ete generes et envoyes par email.','success');
+    }else{
+      throw new Error((result && result.error) || 'Le serveur a renvoye une erreur inconnue.');
+    }
   }catch(error){
     console.error(error);
     setInscriptionStatus(error.message||'Une erreur est survenue pendant la generation du dossier.','error');
