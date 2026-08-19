@@ -910,25 +910,14 @@
             <p><strong>Procédure générale pour tout manquement</strong><br>Toute infraction au règlement (inscription, présence, discipline, matériel, respect des locaux, sécurité, communication) sera traitée selon la procédure de sanction décrite ci-dessus.</p>
           </div>
 
-          <label style="display:flex;align-items:center;gap:8px;font-size:.85rem;margin-bottom:20px">
+          <label style="display:flex;align-items:center;gap:8px;font-size:.85rem;margin-bottom:4px">
             <input type="checkbox" id="reglement-lu" required>
-            J'ai lu et j'accepte le règlement intérieur ci-dessus.
+            J'ai lu et j'accepte le règlement intérieur ci-dessus. La case "signature électronique" cochée dans la section précédente vaut signature de ce document.
           </label>
-
-          <div class="signature-block">
-            <p style="font-size:.85rem;font-weight:600;color:var(--noir2,#1a1a1a);margin-bottom:8px">Signature du responsable légal</p>
-            <div style="border:1px solid var(--bd);border-radius:6px;background:#fff;display:inline-block">
-              <canvas id="signature-pad" width="400" height="150" style="touch-action:none;cursor:crosshair;display:block"></canvas>
-            </div>
-            <div style="margin-top:8px">
-              <button type="button" class="btn-small" id="signature-clear">Effacer la signature</button>
-            </div>
-            <p id="signature-status" style="font-size:.78rem;color:#b23b3b;margin-top:6px"></p>
-          </div>
         </div>
 
         <div class="form-actions">
-          <button type="submit" class="btn btn-dore">Generer le dossier</button>
+          <button type="submit" class="btn btn-dore">Envoyer le dossier</button>
           <a id="download-link" class="btn btn-out download-link" download>Telecharger a nouveau</a>
         </div>
         <p id="inscription-status" class="form-status" role="status" aria-live="polite"></p>
@@ -1181,86 +1170,6 @@ const EMPTY_DOCX_MARKER='__BAYTOULILM_EMPTY_FIELD__';
 const MAX_CHILDREN=5;
 let childCount=0;
 
-let sigCanvas, sigCtx, sigDrawing=false, sigHasDrawn=false;
-
-function initSignaturePad(){
-  sigCanvas=document.getElementById('signature-pad');
-  if(!sigCanvas)return;
-  sigCtx=sigCanvas.getContext('2d');
-  sigCtx.strokeStyle='#1a1a1a';
-  sigCtx.lineWidth=2;
-  sigCtx.lineCap='round';
-  sigCtx.lineJoin='round';
-
-  function getPos(e){
-    const rect=sigCanvas.getBoundingClientRect();
-    const scaleX=sigCanvas.width/rect.width;
-    const scaleY=sigCanvas.height/rect.height;
-    const point=e.touches?e.touches[0]:e;
-    return {x:(point.clientX-rect.left)*scaleX,y:(point.clientY-rect.top)*scaleY};
-  }
-  function start(e){
-    e.preventDefault();
-    sigDrawing=true;
-    sigHasDrawn=true;
-    const p=getPos(e);
-    sigCtx.beginPath();
-    sigCtx.moveTo(p.x,p.y);
-  }
-  function move(e){
-    if(!sigDrawing)return;
-    e.preventDefault();
-    const p=getPos(e);
-    sigCtx.lineTo(p.x,p.y);
-    sigCtx.stroke();
-  }
-  function end(e){
-    if(e)e.preventDefault();
-    sigDrawing=false;
-  }
-
-  sigCanvas.addEventListener('mousedown',start);
-  sigCanvas.addEventListener('mousemove',move);
-  sigCanvas.addEventListener('mouseup',end);
-  sigCanvas.addEventListener('mouseleave',end);
-  sigCanvas.addEventListener('touchstart',start,{passive:false});
-  sigCanvas.addEventListener('touchmove',move,{passive:false});
-  sigCanvas.addEventListener('touchend',end);
-
-  const clearBtn=document.getElementById('signature-clear');
-  if(clearBtn){
-    clearBtn.addEventListener('click',()=>{
-      sigCtx.clearRect(0,0,sigCanvas.width,sigCanvas.height);
-      sigHasDrawn=false;
-    });
-  }
-}
-
-function getSignatureDataUrl(){
-  if(!sigCanvas||!sigHasDrawn)return null;
-  return sigCanvas.toDataURL('image/png');
-}
-
-async function sendSignatureToScript(data){
-  if(!SIGNATURE_CONFIG.scriptUrl||SIGNATURE_CONFIG.scriptUrl.includes('COLLE_ICI'))return 'skip';
-  const signatureImage=getSignatureDataUrl();
-  const payload={
-    parent_nom:data.parent_nom,
-    parent_prenom:data.parent_prenom,
-    email:data.email,
-    telephone:data.telephone,
-    enfants_texte:data.enfants_texte,
-    signature_image:signatureImage
-  };
-  await fetch(SIGNATURE_CONFIG.scriptUrl,{
-    method:'POST',
-    mode:'no-cors',
-    headers:{'Content-Type':'text/plain;charset=utf-8'},
-    body:JSON.stringify(payload)
-  });
-  return 'sent';
-}
-
 function cleanOptional(value){
   return value===EMPTY_DOCX_MARKER?'':value;
 }
@@ -1293,8 +1202,7 @@ function buildDossierPayload(data){
     date_signature:data.date_signature,
     signature_timestamp:data.signature_timestamp,
     enfants:data.enfants,
-    enfants_texte:data.enfants_texte,
-    signature_image:getSignatureDataUrl()
+    enfants_texte:data.enfants_texte
   };
   for(let i=1;i<=MAX_CHILDREN;i+=1){
     const enfant=data.enfants[i-1]||{};
@@ -1562,13 +1470,9 @@ async function handleInscriptionSubmit(event){
     setInscriptionStatus('Veuillez cocher la case confirmant la lecture du règlement.', 'error');
     return;
   }
-  if(!sigHasDrawn){
-    setInscriptionStatus('Veuillez signer dans le cadre prévu avant de continuer.', 'error');
-    return;
-  }
   const submit=form.querySelector('[type="submit"]');
   submit.disabled=true;
-  setInscriptionStatus('Generation du dossier en cours...');
+  setInscriptionStatus('Envoi du dossier en cours...');
   try{
     const data=collectInscriptionData(form);
     const payload=buildDossierPayload(data);
@@ -1592,7 +1496,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   openPageFromHash();
   checkAdminReveal();
   initInscriptionPopup();
-  initSignaturePad();
 });
 
 function initInscriptionPopup(){
