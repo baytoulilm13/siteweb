@@ -1266,7 +1266,7 @@ function cleanOptional(value){
 }
 
 function buildDossierPayload(data){
-  return {
+  const payload={
     submitted_at:data.submitted_at,
     parent_type:data.parent_type,
     parent_nom:data.parent_nom,
@@ -1293,8 +1293,18 @@ function buildDossierPayload(data){
     date_signature:data.date_signature,
     signature_timestamp:data.signature_timestamp,
     enfants:data.enfants,
+    enfants_texte:data.enfants_texte,
     signature_image:getSignatureDataUrl()
   };
+  for(let i=1;i<=MAX_CHILDREN;i+=1){
+    const enfant=data.enfants[i-1]||{};
+    payload[`nom_${i}`]=cleanOptional(data[`nom_${i}`])||enfant.nom||'';
+    payload[`prenom_${i}`]=cleanOptional(data[`prenom_${i}`])||enfant.prenom||'';
+    payload[`date_naissance_${i}`]=cleanOptional(data[`date_naissance_${i}`])||enfant.date_naissance||'';
+    payload[`niveau_demande_${i}`]=cleanOptional(data[`niveau_demande_${i}`])||enfant.niveau_demande||'';
+    payload[`departement_${i}`]=enfant.departement||'';
+  }
+  return payload;
 }
 
 async function sendDossierToScript(payload){
@@ -1563,11 +1573,10 @@ async function handleInscriptionSubmit(event){
     const data=collectInscriptionData(form);
     const payload=buildDossierPayload(data);
     const result=await sendDossierToScript(payload);
-    if(result && result.ok){
-      showDossierLinks(result.downloads);
-      setInscriptionStatus('Votre dossier et le reglement signe ont ete generes et envoyes par email.','success');
+    if(result && result.status==='ok'){
+      setInscriptionStatus('Votre dossier et le reglement signe ont ete generes et envoyes par email. (Reference : '+(result.signatureId||'')+')','success');
     }else{
-      throw new Error((result && result.error) || 'Le serveur a renvoye une erreur inconnue.');
+      throw new Error((result && result.message) || 'Le serveur a renvoye une erreur inconnue.');
     }
   }catch(error){
     console.error(error);
