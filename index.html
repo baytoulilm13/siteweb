@@ -217,6 +217,17 @@
     .schema-card{
       box-sizing:border-box;
     }
+    .schema-card--parcours{
+      width:260px;
+      height:100px;
+      box-sizing:border-box;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      overflow:hidden;
+    }
     .schema-card--light{
       width:260px;
       height:158px;
@@ -306,7 +317,7 @@
       .schema-node, .schema-fork, .schema-branch, .schema-card, .schema-fork-branches{
         width:100% !important; max-width:100% !important; flex:none !important;
       }
-      .schema-card--light, .schema-card--twin{ width:100% !important; }
+      .schema-card--light, .schema-card--twin, .schema-card--parcours{ width:100% !important; }
       .schema-fork-branches{ flex-direction:column !important; gap:28px !important; }
       .schema-years{ grid-template-columns:1fr !important; max-width:100%; }
     }
@@ -664,7 +675,7 @@
                 <div class="schema-arrow">▼</div>
                 <div class="schema-card schema-card--teal schema-card--parcours">
                   <div class="schema-parcours-label">Parcours Qirâa</div>
-                  <div class="schema-parcours-desc">Voie de la maîtrise des différents types de lecture</div>
+                  <div class="schema-parcours-desc">L'art des lectures</div>
                 </div>
                 <div class="schema-arrow">▼</div>
                 <div class="schema-card schema-card--light">
@@ -811,7 +822,7 @@
       <h4>Frais d'inscription annuels</h4>
       <p class="insc-age-range">Les inscriptions débutent du 1er au 30 Août.</p>
       <p class="insc-age-range">Département du Coran : cours ouverts aux enfants de 5 à 18 ans.</p>
-      <p>Les personnes inscrites en ligne doivent obligatoirement apporter le document imprimé comme preuve de leur inscription, ainsi que les 10 euros des frais de dossier à ramener le 29 au 30 (prérentrée le 5 septembre).</p>
+      <p>Les personnes inscrites en ligne doivent apporter les 10 euros de frais de dossier à ramener le 29 au 30 (prérentrée le 5 septembre).</p>
       <p>Departement Coran : 240 EUR par enfant, ou 20 EUR par mois pendant 12 mois.</p>
       <p>Departement Science religieuse : 360 EUR par enfant, ou 30 EUR par mois pendant 12 mois.</p>
       <p>Le paiement mensuel engage la famille sur l'annee complete.</p>
@@ -963,7 +974,7 @@
       <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">Pour participer aux cours, il est obligatoire d'inscrire votre enfant. Il est également nécessaire de signaler toute absence dès qu'elle survient. Les absences répétées et non justifiées peuvent entraîner l'exclusion de votre enfant. En cas de 3 absences injustifiées, l'enfant sera exclu définitivement de l'établissement.</p>
 
       <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Restriction d'inscription par département</h3>
-      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">Une personne inscrite dans un département ne peut pas s'inscrire simultanément dans un même département ailleurs. Chaque inscription est unique et exclusive à un seul établissement par niveau de cours. Une personne inscrite dans notre institut ne peut pas s'inscrire dans un autre institut ailleurs (madrassah, école coranique, etc.). Si nous apprenons qu'un élève s'est inscrit ailleurs sans nous en avoir informés au préalable, cela entraînera son exclusion définitive de l'institut.</p>
+      <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">Une personne inscrite dans notre institut ne peut pas s'inscrire dans un autre institut ailleurs (madrassah, école coranique, etc.). Si nous apprenons qu'un élève s'est inscrit ailleurs sans nous en avoir informés au préalable, cela entraînera son exclusion définitive de l'institut.</p>
 
       <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--noir2);margin-bottom:16px;margin-top:32px">Tenue et matériel</h3>
       <p style="font-size:.95rem;color:var(--txm);line-height:1.9;margin-bottom:24px">Votre enfant doit porter une tenue correcte et adaptée à l'apprentissage religieux. Il doit également apporter son matériel (Coran, cahier, stylo, etc.) à chaque cours.</p>
@@ -1159,11 +1170,11 @@ function handleContactSubmit(event){
 
 const INSCRIPTION_CONFIG={
   templateUrl:'travail/teamplate_inscription.docx',
-  appsScriptUrl:'https://script.google.com/macros/s/AKfycbxyGj-8j4iDGommuIB--CTzWk3qAfJxu6MX5G8PXhVV2JriHALfPzAgK2gPvKym060eBg/exec'
+  appsScriptUrl:'https://script.google.com/macros/s/AKfycbwCg6XsNGYhh-maxx2WIy348iGRyixtgjILcfzEpEsZ6lru7-vd5tf1eEJINcFX_TSyzA/exec'
 };
 
 const SIGNATURE_CONFIG={
-  scriptUrl:'https://script.google.com/macros/s/AKfycbzl9gN1iZd9CBsSTNCTcpcCHfxxQx13rEqzfEDmz9LMhD_5WQxckzxcngV8LnLdChq26g/exec'
+  scriptUrl:'https://script.google.com/macros/s/AKfycbwCg6XsNGYhh-maxx2WIy348iGRyixtgjILcfzEpEsZ6lru7-vd5tf1eEJINcFX_TSyzA/exec'
 };
 
 const EMPTY_DOCX_MARKER='__BAYTOULILM_EMPTY_FIELD__';
@@ -1255,9 +1266,8 @@ function buildMonthSelect(selected){
   return opts;
 }
 function buildYearSelect(selected){
-  const currentYear=new Date().getFullYear();
-  const maxYear=currentYear-3;
-  const minYear=currentYear-20;
+  const maxYear=2100;
+  const minYear=1900;
   let opts='<option value="">Année</option>';
   for(let y=maxYear;y>=minYear;y--){
     opts+=`<option value="${y}"${selected===String(y)?' selected':''}>${y}</option>`;
